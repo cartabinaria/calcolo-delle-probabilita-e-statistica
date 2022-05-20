@@ -1,7 +1,7 @@
 # Calcolo delle Probabilita' e Statistica
 
 
-Una raccolta di risorse per l'insegnamento di Calcolo delle Probabilita' e Statistica del Corso di
+Una raccolta di risorse per l'insegnamento di Calcolo delle Probabilita' e Statistica (04642) del Corso di
 Laurea in Informatica.
 
 ## Presentazione
