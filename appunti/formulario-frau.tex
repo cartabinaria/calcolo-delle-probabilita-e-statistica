@@ -1,12 +1,7 @@
 \documentclass{article}
 
 \usepackage{hyperref}
-\usepackage{mdframed}
-\usepackage{bm}
-\usepackage{etoolbox}
-\usepackage{graphicx}
-\newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
-
+\newcommand{\ind}{\perp\!\!\!\!\!\!\perp} 
 \begin{document}
 
 \title{Formulario di calcolo delle probabilita e statistica} 
@@ -21,69 +16,63 @@ $$ P(A) = \frac{n^o\mbox{ di eventi elementari che compongono a}}{N} = \frac{\mb
 \subsection{Formula dell'unione di due eventi}
 Siano A e B due eventi qualunque (non necessariamente disgiunti), allora\newline
 $$ P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
-
 \newpage
-
-
 \section{Probabilita' condizionata e eventi indipendenti}
 \subsection{Formula probabilita' condizionata}
 Siano A e B due eventi con P(B) $>$ 0. La probabilita' condizionata (o condizionale) di A dato B e'\newline
-\boldsymbol{$$ P(A|B) = \frac{P(A \cap B)}{P(B)}$$}\newline
+$$ P(A|B) = \frac{P(A \cap B)}{P(B)}$$\newline
 Che puo essere letta anche come\newline
 $$ P(A|B) = \frac{\mbox{probabilita' dei "veri" casi favorevoli}}{\mbox{probabilita' dei "veri" casi possibili}}$$\newline
 Nel caso in cui lo spazio campionario sia finito e gli esiti siano equiprobabili, dunque $P$ e' uniforme, allora\newline
 $$ P(A|B) = \frac{\mbox{numero dei "veri" casi favorevoli}}{\mbox{numero dei "veri" casi possibili}}$$\newline
 In altri termini, questa formula viene utilizzata spesso in questa forma\newline
-\boldsymbol{$$P(A\cap B) = P(A|B)P(B)$$}
+$$P(A\cap B) = P(A|B)P(B)$$
 
 \subsection{Regola della catena (formula della probabilita' composta)}
 Dati $n$ eventi $A_1, A_2,..., A_n$, con $P(A_1 \cap ... \cap A_{n - 1}) > 0$, vale la regola
 della catena:\newline
-\boldsymbol{$$P(A_1 \cap A_2 \cap ... \cap A_{n}) = P(A_n|A_1 \cap A_2 \cap ... \cap A_{n - 1}) ... P(A_2|A_1)P(A_1)$$}
+$$P(A_1 \cap A_2 \cap ... \cap A_{n}) = P(A_n|A_1 \cap A_2 \cap ... \cap A_{n - 1}) ... P(A_2|A_1)P(A_1)$$
 
 \subsection{Eventi indipendenti}
 Due eventi A e B si dicono indipendenti se \newline
-\boldsymbol{$$ P(A \cap B) = P(A)P(B)$$}\newline
+$$ P(A \cap B) = P(A)P(B)$$\newline
 Un altro modo per scrivere che due simboli sono indipendenti e'\newline
-$$ A \indep B $$
+$$ A \ind B $$
 
 \subsection{Formula delle probabilita' totali}
 Sia $B_1,...,B_n$ una partizione di $\Omega$. Allora per ogni evento A vale la formula:\newline
 $$ P(A) = \sum_{i=1}^{n}P(A\cap B_i)$$\newline
 Se inoltre si ha che $P(B_i) > 0$ per ogni $i = 1,...,n$ allora vale che\newline
-\boldsymbol{$$ P(A) = \sum_{i=1}^n P(A|B_i)P(B_i)$$}
+$$ P(A) = \sum_{i=1}^n P(A|B_i)P(B_i)$$
 
 \subsection{Formula di Bayes}
 Siano A e B due eventi tali che $P(A)>0$ e $P(B)>0$, allora vale la formula \newline
-\boldsymbol{$$ P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$}
-
+$$ P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
 
 \newpage
-
-
 
 \section{Calcolo combinatorio e variabili aleatorie}
 \subsection{Metodo delle scelte successive}
 Supponiamo che ciascun elemento di un insieme A possa essere determinato tramite una e una sola sequenza di k scelte successive, in cui ogni scelta viene effettuata tra un numero fissato di possibilita' (tale numero di possibilita', qui di seguito indicato con $n_1, n_2,..., n_k$, non dipende dalle scelte precedenti ma solo da k).\newline
 Allora la cardinalita' di A e':\newline
-\boldsymbol{$$ |A| = n_1 \cdot n_2 \cdot ... \cdot n_k$$}
+$$ |A| = n_1 \cdot n_2 \cdot ... \cdot n_k$$
 
 \subsection{Disposizioni con ripetizione}
 Siano E un insieme con $|E| = n$ e $k \in N$. Indichiamo con $DR_{n,k}$ l’insieme delle disposizioni con ripetizione di k elementi di E, ossia l’insieme di tutte le sequenze ordinate di k elementi di E, non
 necessariamente distinti. La cardinalita' di tale insieme e':\newline
-\boldsymbol{$$|DR_{n,k}| = n^k$$}
+$$|DR_{n,k}| = n^k$$
 
 \subsection{Disposizioni semplici}
 Siano E un insieme con $|E| = n$ e $k \le n$. Indichiamo con $D_{n,k}$ l’insieme delle disposizioni semplici (o senza ripetizione) di k elementi di E, ossia l’insieme di tutte le sequenze ordinate di k elementi distinti di E. La cardinalita' di tale insieme e':\newline
-\boldsymbol{$$ |D_{n,k}| = \frac{n!}{(n - k)!}$$}
+$$ |D_{n,k}| = \frac{n!}{(n - k)!}$$
 
 \subsection{Permutazioni}
 Sia E un insieme con $|E| = n$. Indichiamo con $P_n$ l’insieme delle permutazioni degli n elementi di E, ossia l'insieme $D_{n,n}$. La cardinalita' di $P_n$ e' dunque pari a:\newline
-\boldsymbol{$$|P_n|=|D_{n,n}|=n!$$}
+$$|P_n|=|D_{n,n}|=n!$$
 
 \subsection{Combinazioni}
 Siano E un insieme con $|E| = n$ e $k \le n$. Indichiamo con $C_{n,k}$ l'insieme delle combinazioni ( semplici o senza ripetizione) di k elementi di E, ossia la famiglia dei sottoinsiemi di E di cardinalita' k:
 
-$$ |C_{n,k}| = \binom{n}{k}$$
+$$|C_{n,k}| = {n\choose k}$$
 
 \end{document}
