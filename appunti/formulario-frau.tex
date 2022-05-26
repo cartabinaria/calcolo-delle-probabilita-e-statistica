@@ -1,0 +1,111 @@
+\makeatletter
+\def\input@path{{cvpr}}
+\makeatother
+
+
+\documentclass[10pt]{article}
+\usepackage{cvpr}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{diagbox}
+\usepackage{ctex}
+\usepackage{CJKutf8}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{csquotes}
+\usepackage[super]{nth}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{subfig}
+\usepackage{lipsum}
+\usepackage{dsfont}
+\usepackage{pifont}
+\usepackage{epigraph}
+\usepackage{amsfonts} % for mathbb
+\usepackage{booktabs} % for multi table
+\usepackage{verbatim} % for //
+\usepackage{titlesec}
+\usepackage{titletoc}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{}{-1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{}{0em}{}
+\titleformat{\subsubsection}
+  {\normalfont\bfseries}{}{1em}{}  
+\setcounter{tocdepth}{2}
+\titlecontents{section}
+  [1.5em] {\large\bfseries}{}{}
+  {\titlerule*[1em]{\tiny.}\contentspage}
+\titlecontents{subsection}
+  [4em] {}{}{}
+  {\titlerule*[1em]{\tiny.}\contentspage}
+  
+\usepackage{xcolor}
+
+\newcommand*{\myrulefill}[4][]{%
+  #1%
+  \textbf{{#4}} \hfill% Left rule
+{(#3)}% Right rule
+}
+\usepackage{datenumber}
+\usepackage{emoji}
+\setemojifont{TwemojiMozilla}
+\usepackage{url}
+\graphicspath{{figs/}}
+\newcommand\paperurl[1]{{\footnotesize{\color{blue}{\url{#1}}}}}
+
+\usepackage[linktoc=all,pagebackref=true,linkcolor=black,breaklinks=true,letterpaper=true,colorlinks,bookmarks=true]{hyperref}
+\usepackage{calc}
+
+\newcounter{datetoday}
+\newcounter{diffyears}
+\newcounter{diffmonths}
+\newcounter{diffdays}
+
+
+\newcommand{\difftoday}[3]{%
+      \setmydatenumber{datetoday}{\the\year}{\the\month}{\the\day}%
+      \setmydatenumber{diffdays}{#1}{#2}{#3}%
+      \addtocounter{diffdays}{-\thedatetoday}%
+      \ifnum\value{diffdays}>0
+        \def\diffbefore{in }%
+        \def\diffafter{}%
+      \else
+        \def\diffbefore{}%
+        \def\diffafter{already}%
+        \setcounter{diffdays}{-\value{diffdays}}%
+      \fi
+      \diffbefore
+      \thediffdays\space Days
+      \diffafter
+}
+
+\newcommand\zhCN[1]{\begin{CJK}{UTF8}{gkai}{#1}\end{CJK}}
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+\begin{document}
+\title{Daily Logs, Notes, and Experiments}
+\author{v-yiliwang \\
+        yiliw.thu@gmail.com}
+        
+\maketitle
+\renewcommand*\contentsname{{}}
+\input{cvpr/notation}
+\tableofcontents
+\newpage
+\input{secs/1-logs}
+\newpage
+\input{secs/2-notes}
+\newpage
+\input{secs/3-experiments}
+
+\newpage
+{\small
+\bibliographystyle{ieee_fullname}
+\bibliography{ref}
+}
+\end{document}
