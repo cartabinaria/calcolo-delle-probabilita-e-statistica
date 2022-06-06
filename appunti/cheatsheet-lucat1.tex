@@ -1,0 +1,217 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts}
+
+\title{\textsc{Cheatsheet di Statistica}}
+\author{Luca Tagliavini}
+\date{June 6, 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{quote}
+NOTA: i seguenti appunti sono \textbf{altamente} informali e sono pensati per essere
+un supporto allo studente come ultimo ripasso prima di una prova. Contengono solo
+uno scinto molto riassuntivo dei temi centrali al corso.
+\end{quote}
+
+\section{Probabilit\`a condizionata}
+
+La probabilit\`a del verificarsi di un evento $A$ sapendo che si \`e verificando un evento $B$ \`e data da:
+
+\begin{align*}
+\mathbb{P}(A \mid B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+\end{align*}
+
+\section{Regola della catena}
+
+\begin{align*}
+\mathbb{P}(A \cap B) = \mathbb{P}(A \mid B) \mathbb{P}(B)
+\end{align*}
+
+\section{Eventi indipendenti}
+
+Due eventi $A$ e $B$ si dicono indipendenti se:
+
+\begin{align*}
+\mathbb{P}(A \cap B) = \mathbb{P}(A)\mathbb{P}(B)
+\end{align*}
+
+\section{Probabilit\`a totali}
+
+Sia $A$ un generico evento e $B_1,\ldots,B_n$ una partizione di $\Omega$. Allora vale che:
+
+\begin{align*}
+\mathbb{P}(A) = \sum_{i=1}^n \mathbb{P}(A \cap B_i)
+\end{align*}
+
+\section{Formula di Bayes}
+
+Siano $A,B$ due eventi tali che $\mathbb{P}(A), \mathbb{P}(B) > 0$. Allora vale:
+
+\begin{align*}
+\mathbb{P}(A \mid B) = \frac{\mathbb{P}(B \mid A)\mathbb{P}(A)}{\mathbb{P}(B)}
+\end{align*}
+
+\section{Distribuzioni semplici}
+L'insieme delle distribuzioni semplici
+\begin{align*}
+    D_{n,k} = \{(x_1, \ldots, x_k) \mid x_i \in E, x_i \neq x_j \forall i,j \text{ t.c. } i \neq j\text{, con } |E|=n \}
+\end{align*}
+ha cardinalit\`a pari a
+\begin{align*}
+|D_{n,k}| = \frac{n!}{(n-k)!}
+\end{align*}
+
+\section{Distribuzioni con ripetizione}
+L'insieme delle distribuzioni con ripetizione
+\begin{align*}
+    DR_{n,k} = \{(x_1, \ldots, x_k) \mid x_i \in E\text{, con } |E|=n \}
+\end{align*}
+ha cardinalit\`a pari a
+\begin{align*}
+|DR_{n,k}| = n^k
+\end{align*}
+
+\section{Combinazioni}
+L'insieme delle combinazioni semplici
+\begin{align*}
+    C_{n,k} = \{A \subseteq E \mid |A| = k\text{, con } |E|=n \}
+\end{align*}
+ha cardinalit\`a pari a
+\begin{align*}
+|C_{n,k}| = {n \choose k}
+\end{align*}
+
+Le combinazioni sono usate per modellizzare il numero di occorrenze nel caso di estrazioni simultanee.
+
+\section{Permutazioni}
+Il numero di permutazioni di una coppia ordinata $E$ con $|E| = n$ \`e pari a 
+\begin{align*}
+    |P_n| = |D_{n,n}| = n!
+\end{align*}
+
+\section{Varianza e Covarianza}
+
+La varianza \`e data da
+\begin{align*}
+Var(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2
+\end{align*}
+
+La covarianza \`e data da
+\begin{align*}
+Cov(X, Y) = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]
+\end{align*}
+
+La varianza gode della seguente propriet\`a:
+\begin{align*}
+Var(aX+b) = a^2 Var(x)
+\end{align*}
+
+\section{Probabilit\`a degli intervalli in $F_x$}
+
+\begin{alignat*}{2}
+\mathbb{P}(X = x) &= \mathbb{P}(X \leq x) - \mathbb{P}(X < x) &&= F_x(x) - F_x(x−) \\
+\mathbb{P}(x < X \leq y) &= \mathbb{P}(X \leq y) - \mathbb{P}(X \geq x) &&= F_x(y) - F_x(x) \\
+\mathbb{P}(x \leq X \leq y) &= \mathbb{P}(X \leq y) - \mathbb{P}(X < x) &&= F_x(y) - F_x(x-) \\
+\mathbb{P}(x \leq X < y) &= \mathbb{P}(X < y) - \mathbb{P}(X < x) &&= F_x(y-) - F_x(x-) \\
+\mathbb{P}(x < X < y) &= \mathbb{P}(X < y) - \mathbb{P}(X \leq x) &&= F_x(y-) - F_x(x)
+\end{alignat*}
+
+\section{Variabili aleatorie discrete}
+
+Una variabile aleatoria discreta $X$ assume valori appartenenti al suo supporto $S_X = \{x_1, \ldots, x_n\}$.
+La sua distribuzione prende la forma di
+\begin{center}
+\begin{tabular}{ c|c|c|c } 
+ X & x_1 & \ldots & x_n \\ 
+ \hline
+ p_X & p_X(x_1) & \ldots & p_X(x_n)
+\end{tabular}
+\end{center}
+
+La funzione di ripartizione $F_x$ \`e a tratti e della forma
+\begin{align*}
+F_x(x) = \begin{cases}
+0 &\text{se } x < x_1 \\
+p_X(x_1) &\text{se } x_1 \leq x < x_2 \\
+\vdots \\
+\sum_{i=1}^{n-1} p_X(x_i) &\text{se } x_{n-1} \leq x < x_{n} \\
+\sum_{i=1}^n p_X(x_i) = 1 &\text{se } x \geq x_n \\
+\end{cases}
+\end{align*}
+
+Il valore atteso \`e dato da:
+\begin{align*}
+\mathbb{E}[X] = \sum_{i=1}^n x_i p_X(x_i)
+\end{align*}
+
+\section{Variabili aleatorie continue}
+
+Una variabile aleatoria continua $X$ assume valori appartenenti al suo supporto $S_X = [a, b]$.
+La sua distribuzione prende la forma di una funzione $f_X$ con le seguenti propriet\`a:
+\begin{itemize}
+\item $\int_{-\infty}^{+\infty}f_X(x) dx = 1$
+\item $f_X(x) > 0 \, \forall x$
+\end{itemize}
+
+La funzione di ripartizione $F_x$ \`e \textbf{continua} e della forma:
+\begin{align*}
+F_x(x) = \begin{cases}
+0 &\text{se } x < x_1 \\
+\inf_{-infty}^{x_1}f_X(x) dx &\text{se } x_1 \leq x < x_2 \\
+\vdots \\
+\inf_{-infty}^{x_{n-1}}f_X(x) dx &\text{se } x_{n-1} \leq x < x_n \\
+\inf_{-infty}^{+infty}f_X(x) dx &\text{se } x \geq x_n \\
+\end{cases}
+\end{align*}
+
+Il valore atteso \`e dato da:
+\begin{align*}
+\mathbb{E}[X] = \int_{-\infty}^{+\infty} f_X(x) dx
+\end{align*}
+
+\subsection{Standardizzazione}
+
+Presa una variabile alteatoria discreta $X$ la sua forma standardizzata $Z$ si ottiene dalla formula
+
+\begin{align*}
+Z = \frac{X-\mu}{\sigma}
+\end{align*}
+
+\subsection{Teorema centrale del limite}
+
+Preso un grande numero di esperimenti aleatori descritte da $n$ variabili aleatorie $X_1, \ldots, X_n$ si pu\`o
+
+\begin{align*}
+\overline{X_n} = \frac{X_1 + \ldots + X_n}{n} \\
+\overline{Z_n} = \frac{\overline{X_n} - \mu}{\frac{\sigma}{\sqrt{n}}}
+\end{align*}
+
+Di conseguenza quando viene richiesto di calcolare $\mathbb{P}(X_1 + \ldots + X_n \leq l)$ si pu\`o segure la seguente catena di ugualianze:
+\begin{align*}
+\mathbb{P}(X_1 + \ldots + X_n \leq l) &= \mathbb{P}(X_n \leq \frac{l}{n})\\
+&= \mathbb{P}(Z_n \leq \frac{\frac{l}{n} - \mu}{\frac{\sigma}{\sqrt{n}}}) \\
+&= \mathbb{P}(Z_n \leq (\frac{l}{n} - \mu) \cdot \frac{\sqrt{n}}{\sigma}) \\
+&= \Phi((\frac{l}{n} - \mu) \cdot \frac{\sqrt{n}}{\sigma}) \\
+\end{align*}
+
+\section{Legge di $X_n$}
+
+Presa una catena di markov omogenea e a stati finiti descritta dalla successione $(X_n)_n$, la densit\`a discreta di una qualche $X_n$ vale
+
+\begin{align*}
+p_{X_j}(j) = \sum_{i=1}^n p_{X_k}(i) \pi_{i,j}^{(n-k)}
+\end{align*}
+
+assumendo $X_k$ come stato iniziale.
+
+\section{Distribuzione invariante}
+
+Presa una catena di markov descritta dalla matrice $\Pi$ un vettore generico $\pi = (\pi_1, \ldots, \pi_n)$ si dice \emph{distribuzione invariante} se
+
+\begin{align*}
+\pi = \pi \Pi
+\end{align*}
+
+\end{document}
