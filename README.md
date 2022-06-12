@@ -1,4 +1,4 @@
-# Calcolo delle Probabilità e Statistica
+# Calcolo delle Probabilità e Statistica (04642)
 
 Una raccolta di risorse per l'insegnamento di Calcolo delle Probabilità e
 Statistica (04642) del Corso di Laurea in Informatica.
