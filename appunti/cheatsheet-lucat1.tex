@@ -152,17 +152,17 @@ Una variabile aleatoria continua $X$ assume valori appartenenti al suo supporto 
 La sua distribuzione prende la forma di una funzione $f_X$ con le seguenti propriet\`a:
 \begin{itemize}
 \item $\int_{-\infty}^{+\infty}f_X(x) dx = 1$
-\item $f_X(x) > 0 \, \forall x$
+\item $f_X(x) \geq 0 \, \forall x$
 \end{itemize}
 
 La funzione di ripartizione $F_x$ \`e \textbf{continua} e della forma:
 \begin{align*}
 F_x(x) = \begin{cases}
 0 &\text{se } x < x_1 \\
-\inf_{-infty}^{x_1}f_X(x) dx &\text{se } x_1 \leq x < x_2 \\
+\int_{-\infty}^{x_1}f_X(x) dx &\text{se } x_1 \leq x < x_2 \\
 \vdots \\
-\inf_{-infty}^{x_{n-1}}f_X(x) dx &\text{se } x_{n-1} \leq x < x_n \\
-\inf_{-infty}^{+infty}f_X(x) dx &\text{se } x \geq x_n \\
+\int_{-\infty}^{x_{n-1}}f_X(x) dx &\text{se } x_{n-1} \leq x < x_n \\
+\int_{-\infty}^{+\infty}f_X(x) dx &\text{se } x \geq x_n \\
 \end{cases}
 \end{align*}
 
