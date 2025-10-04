@@ -1,0 +1,403 @@
+% \begin{document}
+\chapter{Calcolo Combinatorio}  
+
+Quando abbiamo numero finito di elementi con probabilita' uniforme, e' possibile utilizzare l'addittivita' delle probabilita' per ridurre il problema di probabilita' a un problema di conteggio (la probabilita' di un evento e' data dal numero di casi favorevoli) $ \implies $ dobbiamo imparare a contare.
+
+Dato un certo insieme, dobbiamo calcolarne la cardinalita' utilizzando i giusti stumenti matematici:
+
+\thm{Calcolo probabilita' uniforme (Laplace)}{
+  Se $ \Omega $ e' finito, $ \Omega = \{w_1,...,w_N\} $ e $ \forall i = 1,...,N.\ \mathbb{P}(\{w_i\}) = \frac{1}{N} $ (probabilita' uniforme), allora $ \forall A \subseteq \Omega $ (evento):
+  \[
+    \mathbb{P}(A) = \frac{|A|}{N}
+  \]
+}
+
+Dobbiamo introdurre:
+\begin{itemize}
+\item \textbf{Fattoriali}:
+  \begin{itemize}
+  \item $ 0! \coloneq 1 $
+  \item $ (n+1)! \coloneq (n+1) \cdot n! $
+  \end{itemize}
+  \item \textbf{Coefficenti Binomiali}:
+    \[
+      \binom{n}{k} = \frac{n!}{k! (n-k)!} \quad \forall n,k\in \mathbb{N}. n \geq k
+    \]
+    In generale:
+    \[
+      \binom{n}{k} = \binom{n}{n-k}
+    \]
+    Dal triangolo di Tartaglia, possiamo visualizzare altre proprieta' (oltre alla simmetria)
+\end{itemize}
+
+Vedremo che $ \binom{n}{k} $ sono il numero di modi diversi che abbiamo per selezionare $ k $ sottoinsiemi diversi da un insieme di cardinalita' $ n $.
+
+\thm{Formula di Newton}{
+  \[
+    (a+b)^n = \sum_{k=0}^{n} \binom{n}{k} a^k b^{n-k}
+  \]
+}
+
+Quindi anche il coefficente deriva da un problema di conteggio.
+
+\section{Metodo (Principio) delle Scelte Successive}
+E' un algoritmo per determinare la cardinalita' di un insieme. Vediamo un esempio:
+\ex{}{
+  Alfabeto di 36 caratteri dove ognuno dei numeri corrisponde a un carattere alfanumerico.
+
+  \underline{Domanda}: "Quante possibili password distinte di 8 caratteri esistono in questo alfabeto?"
+
+  $ \Omega = \text{Alfanumerici} \times ... \times \text{Alfanumerici} $ 8 volte.
+
+  \begin{itemize}
+  \item Scelte:
+    \begin{enumerate}
+    \item un carattere dei 36 totali
+    \item \vdots (e' cosi 8 volte)
+    \end{enumerate}
+    Quindi $ |\Omega| = 36 \times ... \times 36 = 36^8 $
+  \end{itemize}
+
+  E se vogliamo evitare di ripetere i caratteri? Vediamo le scelte:
+  \begin{enumerate}
+  \item un carattere dei 36 totali
+  \item un carattere dei \textbf{35 possibili}
+  \item \vdots
+  \item un carattere dei 29 possibili
+  \end{enumerate}
+  Quindi $ |\Omega| = 36 \times 35 \times \dots \times 29 = \frac{36!}{28!} $
+}
+
+Definiamo il principio generale:
+
+\thm{Non proprio un teorema}{
+  Ciascun elemetno di un insieme $ A $ puo' essere determinato tramite sola sequenza di $ k $ scelte, dove per ogni scelta ci sono $ n_1,\dots,n_k $ possibilità, allora:
+  \[
+  |A| = n_1 \times \dots \times n_k
+  \]
+}
+
+\nt{
+  Puo' essere riscritto come teorema formale ma \textbf{E' TROPPO DIFFICILE PER NOI INFORMATICI} quindi non lo facciamo!!!!
+}
+
+\ex{}{
+  52 carte (13 tipi 4 semi)
+  \begin{enumerate}
+    \item $ A = \text{iniseme dei full (un tris e una coppia)} $, $ |A| = ? $
+
+      \underline{4 scelte:}
+      \begin{itemize}
+        \item tipo di carta nel tris (13)
+        \item tipo di carta nella coppia (12)
+        \item semi nel tris (4)
+        \item semi nella coppia (6)
+      \end{itemize}
+      $ |A| = 13 12 4 6 = \text{casi favorevoli} $
+
+    \item $ A = \text{doppie coppie (due coppie di tipo diverso e una carta libera)} $, $ |A|=? $
+
+      \underline{Scelte}:
+      \begin{itemize}
+        \item tipo nella prima coppia (13)
+        \item tipo nella seconda coppia (12)
+        \item semi nella prima coppia (6)
+        \item semi seconda (6)
+        \item tipo singolo (11)
+        \item seme singolo (4)
+      \end{itemize}
+      $ |A| = 13 12 6 6 11 4 $ \textbf{SBAGLIATO!!}
+
+      Perche' non ci interessa dell'ordine delle due coppie (bisogna dedurlo dalla definizione di A), quindi NON c'e' una prima e seconda coppia (anche sopra era sbagliato vederlo cosi') dato che non c'e' l'ordine.
+
+      Combinazioni dei tipi che compongono 2 coppie ($ 13 \times 12 / 2 $)
+  \end{enumerate}
+}
+
+\section{Disposizioni}
+
+\dfn{Disposizioni con ripetizione}{
+  Dato un insieme $ E $ con $ n $ elementi, indichiamo con $ DR_{n,k} $ le sequenze ordinate di $ k $ elementi di $ E $. }
+Sostanzialmente, $ DR_{n,k} = E \times E ... \times E $ $ k $ volte, ovvero:
+\[
+DR_{n,k} = E^k
+\]
+Quindi usando il principio delle scelte successive:
+\[
+|DR_{n,k}| = n^k
+\]
+dato che per ogni $ E $ abbiamo una scelta fra $ n $ elementi.
+
+\nt{
+  Indicando tale insieme con $ DR_{n,k} $, l'insieme $ E $ sparisce, dato che ci interessa solo la \textbf{cardinalita'} di tale insieme e non ce ne frega un cavolo dei sui elementi.
+}
+
+\ex{Iniziamo a calcolare le probabilita'!}{
+  Presa un urna con $ n $ palline numerate ($ E = \{1,...,n\} $) e si estraggono $ k $ palline con \textit{reinbussolamento}.
+  \[
+  \Omega = E \times ... \times E = DR_{n,k}
+  \]
+  Quindi $ |\Omega| = n^k $, e la probabilita' uniforme e' data da:
+  \[
+    \mathbb{P}(\{\omega\}) = \frac{1}{|\Omega|} = n^{-k}
+  \]
+}
+\ex{}{
+  Determinare spazi campionari per i seguenti esperimenti:
+  \begin{itemize}
+  \item Scelta casuale di una parola di 8 lettere
+  \item Scelta di colonne deltotocalcio (risultato di 13 partite)
+  \end{itemize}
+}
+
+Quindi lo usiamo nei casi di estrazione con reinbussolamento quando ci interessa l'ordine.
+
+\dfn{Disposizioni}{
+  Dato un insieme $ E  $ di $ n $ elementi, l'insieme delle disposizioni (senza ripetizione) di $ k $ elementi dell'insieme $ E $ e' l'insieme delle sequenze ordinate di $ k $ elementi \textit{distinti}, ovvero:
+  \[
+    D_{n,k} \coloneq \{(x_1,...,x_k)|x_1,...,x_k \in E \land x_i \neq x_j \text{se} i \neq j \}
+  \]
+}
+
+\nt{
+  $ D_{n,k} $ e' un sottoinsieme \textbf{stretto} di $ DR_{n,k} $.
+}
+
+Usando le scelte successive:
+\[
+  |D_{n,k}| = n\times (n-1) \times ... \times (n-k+1) = \frac{n!}{(n-k)!}
+\]
+L'esperimento aleatorio di riferimento e' l'estrazione \textbf{senze} reimissione.
+
+\dfn{Permutazioni}{
+  $ P_n = D_{n,n} $, quindi:
+  $ |P_n| = n! $
+}
+
+\section{Combinazioni}
+\dfn{Combinazioni}{
+  Dato un insieme $ E $ di $ n $ elementi, indichiamo con $ C_{n,k} $ la classe dei sottoinsiemi di $ E $ contenenti $ k $ elementi, ovvero:
+  \[
+  C_{n,k} = \{A \subseteq E \mid |A|= k\}
+  \]
+}
+Siamo passati da sequenze a sottoinsiemi, ovvero non ci interessa piu' dell'ordine:
+\[
+\text{sottoinsieme} = \text{sequenza non ordinata}
+\]
+
+
+
+\mprop{sulla combinazione come coefficiente biniomiale}{
+  Sia la combinazione $C_{n,k}$, allora vale:
+  \begin{equation}
+    |C_{n,k}| = \binom{n}{k}
+  \end{equation}
+}
+\pf{Dimostrazione}{
+  Mi riduco a dimostrare che:
+  \[
+    \frac{n!}{(n-k)!} = |C_{n,k}|k!
+  \]
+  Ovvero
+  \[
+    |D_{n,k}| = |C_{n,k}|\cdot |P_k|
+  \]
+
+
+
+  Ma $|D_{|n,k|} = |C_{n,k}|\cdot |P_k|$ vale per il principio delle scelte successive, infatti:
+  \begin{itemize}
+    \item scelta per i $k$ elementi selezionati: $|C_{n,k}|$
+    \item scelta dell'ordinamento $|P_k|$
+  \end{itemize}
+}
+
+Si noti questo esempio
+
+\ex{}{
+  Consideriamo un'unrna con $n$ palline distinte delle quali ne vengono estratte $k$. Determinare lo spazio di probabilità
+  
+  \hrule
+  
+  Si ha che: $\Omega = C_{n,k}$
+
+  Mentre per il principio di probabilià uniforme si ha:
+  \[
+    \mathbb{P}(\{w\}) = \frac{1}{\binom{n}{k}} = \frac{k!(n-k)!}{n!}
+  \]
+}
+
+Interpretazione combinatoria della formula di Stifel
+\nt{
+  Si consideri la formula di Stifel:
+  \begin{equation}
+    \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+  \end{equation}
+  Si può interpretare questa formula in termini di combinazioni come segue:
+
+  \[
+    \underbrace{\binom{n}{k}}_{\parbox{4cm}{n° di combinazioni di $k$ elementi di $E$}} = 
+    \underbrace{\binom{n-1}{k-1}}_{\parbox{4cm}{n° di combinazioni di $k$ elementi di $E$ in cui è presente l'elemento $\bar{e}$}} + 
+    \underbrace{\binom{n-1}{k}}_{\parbox{4cm}{n° di combinazioni di $k$ elementi di $E$ senza l'elemento $\bar{e}$}}
+  \]
+  dove $\bar{e}$ è un elemento fissato
+}
+
+Interpretazione combinatoria del binomio di Newton
+\nt{
+  Si consideri la formula del binomio di Newton:
+  \begin{equation}
+    (a+b)^n=\sum_{k=0}^n\binom{n}{k}a^kb^{n-1}\quad a,b\in \mathbb{R}
+  \end{equation}
+
+  Il prodotto $(a + b)(a + b)\dots(a + b)$ di $n$ fattori si sviluppa in una somma di monomi di grado $n$ del tipo $a^{n-k}b^k$ dive $k$ varia da 0 a $n$. Dobbiamo quindi determinare il coefficente di ogni monomio  $a^{n-k}b^k$, ossia calcolare quante volte compare facendo il prodotto $(a+b)(a+b)\dots (a+b)$ ossia calcolare quante volte compare facendo il prodotto $(a+b)(a+b)\dots (a+b)$. Questo monomio però si ottiene sciegliendo il valore $b$ da $k$ degli $n$ fattori e $a$ dai rimanenti $n-k$, ovvero in $\binom{n}{k}$ modi
+}
+
+\section{Tipologie di esperimenti}
+Riassumendo, si possono verificare 3 casi notevoli durante un esperimento aleatorio inseriti in questa tabella
+  
+\begin{table}[h]
+  \centering
+    \begin{tabular}{|m{5cm}|m{5cm}|m{5cm}|}
+    \hline
+    % \backslashbox{\textbf{ORDINE}}{\textbf{RIPETIZIONE}} & \textbf{Senza ripetizione} & \textbf{Con ripetizione} \\ TODO: porcodio perche' e' tornato cosi'? L'avevo messo a posto 
+    \hline
+    Si tiene conto dell'ordine & 
+    \begin{tabular}{@{}l@{}}
+    Estrazione senza reimmissione \\
+    $\Omega = \mathsf{D}_{n,k}$ \\
+    $|\Omega| = \dfrac{n!}{(n-k)!}$
+    \end{tabular} &
+    \begin{tabular}{@{}l@{}}
+    Estrazione con reimmissione \\
+    $\Omega = \mathsf{DR}_{n,k}$ \\
+    $|\Omega| = n^k$
+    \end{tabular} \\ 
+    \hline
+    Non si tiene conto dell'ordine & 
+    \begin{tabular}{@{}l@{}}
+    Estrazione simultanea \\
+    $\Omega = \mathsf{C}_{n,k}$ \\
+    $|\Omega| = \dfrac{|\mathsf{D}_{n,k}|}{k!} = \binom{n}{k}$
+    \end{tabular} & --- \\ 
+    \hline
+    \end{tabular}
+    \caption{Gli spazi campionari e le loro cardinalità.}
+  \label{tab:spazi_campionari}
+\end{table}
+
+
+\nt{
+  La casella vuota nella tabella sopra riportata corrisponde all’insieme delle cosiddette \textit{combinazioni con ripetizione}, un raggruppamento di $k$ elementi estratti da $n$ elementi distinti, nel quale uno stesso elemento può ripetersi fino a $k$ volte, e in cui l'ordine di estrazione non è rilevante
+}
+
+Si noti questo esempio:
+\ex{Esempio sulla casella mancante}{
+  si lancia tre volte una moneta. Qual è la probabilità che esca due volte testa?
+
+  \hrule
+
+  Si hanno due approcci per scegliere lo spazio campionario:
+  \begin{itemize}
+    \item utilizzare le $DR_{2,3}$ con $\mathbb{P}$ uniforme.
+    
+    In questo caso:
+  
+  \[
+    \Omega =DR_{2,k} = \{(T, T, T), (T, T, C), (T, C, T), (C, T, T), (T, C, C), (C, T, C), (C, C, T), (C, C, C)\}
+  \]
+
+  Ci sono 8 possibili sequenze perché ogni lancio ha 2 possibili risultati:
+  \[
+    2^3 = 8
+  \]
+  Siccome ogni sequenza ha la stessa probabilità di verificarsi, possiamo assegnare la probabilità uniforme, si ha
+
+  \[
+    \mathbb{P}(x_1,x_2,x_3) = \frac{1}{8} \quad \forall x 
+  \]
+
+  Sarà quindi facile calcolare la probabilità di $A$ (lascio al basta come esercizio)
+  \item Lo spazio campionario con combinazioni con ripetizione $CR_{n,k}$.
+  
+  In questo caso, dato che non ci interessa l'ordine dei lanci, dobbiamo raggruppare le sequenze "uguali":
+
+  \[
+    CR_{2,3} = \{[T,T,T],[T,T,C],[T,C,C],[C,C,C]\}
+  \]
+
+  Tuttavia è facile verificare che in questo caso la probabilità uniforma \textbf{non sussiste}, perché alcuni gruppi contengono più sequenze di altri
+
+  infatti:
+
+  \begin{itemize}
+    \item $\mathbb{P}([T, T, T]) = \P((T, T, T)) =\frac{1}{8}$
+    \item  $\P([T, T, C]) = \P((T, T, C)) + \P((T, C, T)) + \P((C, T, T))=\frac{3}{8}$
+    \item $\P([T, C, C]) = \P((T, C, C)) + \P((C, T, C)) + \P((C, C, T)) =\frac{3}{8}$
+    \item $\mathbb{P}([C,C,C]) = \P((C,C,C)) =\frac{1}{8}$
+  \end{itemize}
+\end{itemize}
+}
+
+\nt{
+  Se scegliamo lo spazio campionario $CR_{n,k}$, dobbiamo lavorare con probabilità non uniformi, il che complica i calcoli.Invece, se lavoriamo con , tutte le sequenze hanno la stessa probabilità e possiamo usare il calcolo combinatorio standard per trovare i risultati.
+
+  Per questo motivo, nella maggior parte dei problemi in cui c’è ripetizione, conviene lavorare con disposizioni con ripetizione , perché permette di usare la probabilità uniforme.
+}
+
+Bho adesso si fa un altro esempio, e va benissimo così
+
+\ex{Probabilità binomiale}{
+  Si consideri un’urna che contiene $b$ palline bianche ed $r$ palline rosse. Si effettuano $k$ estrazioni con reimmissione. Calcolare la probabilità dell’evento
+
+  \[
+    A_\ell = \text{"si estraggono } \ell \text{ palline bianche ed } k - \ell \text{ palline rosse''}
+  \]
+}
+
+\pf{soluzione}{
+  Etichettiamo le $b$ palline bianche con $b_1,b_2, \dots, b_b$; analogamente, le $r$ palline rosse con $r_1,\dots , r_r$. Sia dunque:
+  \[
+    E = \{b_1,\dots, b_b,r_1,\dots , r_r\}
+  \]
+
+  E si noti che $|E| = b+r$.
+
+  Come spazio di probabilità $(\Omega,\P)$ è naturale considerare $\Omega = DR_{b+r, k}$ (insieme delle disposizioni con ripetizione di $k$ elementi di $E$) e $\P$ probabilità uniforme, quindi $\P(\{w\})=\frac{1}{(b+r)^n}$
+
+  Per calcolare $\P(A_\ell)$ dobbiamo calcolare $|A_\ell|$ che si rivela possibile usando il principio delle scelte successive:
+  \begin{itemize}
+    \item scelta della sequenza di $\ell$ palline bianche estratte, ovvero $|DR_{b,\ell}|$ possibilità
+    \item scelta della sequenza di $k-\ell$ palline bianche estratte, ovvero $|DR_{b,k-\ell }|$ possibilità
+    \item scelta delle $\ell$ estrazioni in cui sono uscite le palline bianche: $|C_{k,\ell}|$ possibilità
+  \end{itemize}
+
+  In defintiva:
+  \[
+    \P(A_\ell) = \frac{|DR_{b,\ell}||DR_{b,k-\ell }||C_{k,\ell}|}{| DR_{b+r, k}|} = \binom{k}{\ell}\frac{b^\ell r^{k-\ell}}{(b+r)^k}
+  \]
+  O, equivalentemente, dato $p=\frac{b}{b+r}$ si ha:
+  \[
+    \P(A_\ell) = \binom{k}{\ell}p^\ell (1-p)^{k-\ell}, \quad \ell = 0,\dots, k
+  \]
+}
+
+\nt{
+  Consideriamo lo spazio di probabilità $(\Omega, \mathbb{P})$ con $\Omega = \{0, 1, 2, ..., k\}$ e $\mathbb{P}$ data da
+\[
+\mathbb{P}(\{\ell\}) = \binom{k}{\ell} p^\ell (1-p)^{k-\ell}, \qquad \ell = 0, 1, ..., k.
+\]
+
+Si noti che $\mathbb{P}$ è effettivamente una probabilità. Infatti, per la formula del binomio di Newton vale che
+\[
+\sum_{\ell=0}^k \mathbb{P}(\{\ell\}) = \sum_{\ell=0}^k \binom{k}{\ell} p^\ell (1-p)^{k-\ell} = (p + (1-p))^k = 1.
+\]
+
+$\mathbb{P}$ non è una probabilità uniforme. $\mathbb{P}$ si chiama \textbf{probabilità binomiale}.
+
+
+
+
+
+}

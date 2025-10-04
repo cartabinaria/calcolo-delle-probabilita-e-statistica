@@ -1,0 +1,325 @@
+% \begin{document}
+\newcounter{assiomacounter} 
+\newcommand{\assiomalabel}[1]{\refstepcounter{assiomacounter}\label{#1}\textbf{Assioma \theassiomacounter.}}
+
+\chapter{Spazi di probabilità}
+\section{Concetti introduttivi}
+Innanzi tutto andiamo a definire che cosa intendiamo per \textit{esperimento aleatorio, esito, probabilità}
+
+Con la dicitura \textit{esperimento aleatorio} indicheremo qualunque fenomeno (fisico, economico, sociale, \dots ) il cui esito non sia determinabile con certezza a priori. Il nostro obiettivo è di fornire una descrizione matematica di un esperimento aleatorio, definendo un modello probabilistico, un \textit{esito} invece è un ipotetico risultato di un'esperimento aleatorio sulla base di un cosiddetto \textit{spazio campionario} un insieme che contiene tutti gli esiti possibili dell’esperimento
+
+\esempio{
+    \begin{itemize}
+        \item \textbf{Esperimento aleatorio:} Lancio di un dado.
+        \item \textbf{Spazio campionario:} $\Omega = \{1, 2, 3, 4, 5, 6\}$.
+        \item \textbf{Esito:} $4$.
+    \end{itemize}
+}
+
+\nt{
+  In casi piu' complessi ci saranno vari sotto-esperimenti aleatori, come 10 lanci di un dato.
+}
+
+Adesso forniamo vere e priorie definizioni
+\dfn{evento}{
+    Si definisce \textbf{evento} un'affermazione riguardante l'ipotetico esito univoco dell'esperimento, di cui si può affermare con certezza se è vero o falso una volta noto l'esito
+}
+\ex{}{
+    Esper. aleatorio: Lancio del dado\\
+    $A = \text{"esce un numero pari"}$
+}
+
+\dfn{Spazio camipionario}{
+  Lo \textbf{spazio campionario} è l'insieme di tutti i possibili esiti di un esperimento casuale e viene denotato con $\Omega$
+}
+
+Notare che non si afferma "tutti e solo tutti", quindi \textbf{qualsiasi} insieme che contiene gli esiti possibili può essere considerato uno spazio campionario
+
+\ex{Lancio dado}{
+  Possiamo porre come spazio campionario:
+  \[
+  \Omega = \{1,2,3,4,5,6\}
+  \]
+  ma anche
+  \[
+  \Omega = \mathbb{R}
+  \]
+}
+
+\dfn{Esiti favorevoli}{
+  Esiti per cui un evento è vero sono detti esiti favorevoli.
+}
+
+\dfn{Evento in termine di insiemi}{
+  Un evento si puo' definire anche come il sottoinsieme dello spazio campionario $ \Omega $ formato da tutti gli esiti favorevoli dell'evento.
+}
+
+\ex{}{
+$ \Omega = \{1,2,3,4,5,6\} \implies A = \text{"esce un numero pari"} \implies \{2,4,6\} $ sono gli esiti favorevoli dell'evento $A$.
+ } 
+
+ \nt{
+  La definizione insiemistica di un evento dipende dallo spazio campionario $\Omega$ definito, poiché l'evento è un sottoinsieme di $\Omega$. Tuttavia, l'insieme degli esiti favorevoli di un evento è fisso, e rappresenta l'insieme evento di cardinalità massima possibile, ovvero l'insieme degli esiti favorevoli $A \subseteq \Omega$.
+  }
+
+\dfn{}{
+  \begin{itemize}
+    \item $ \Omega $ e' l'evento \textit{certo}
+    \item $ \emptyset $ e' l'evento \textit{impossibile}
+    \item $ \omega \in \Omega $ e' un evento \textit{elementare} ($ A = \{\omega\} $)
+  \end{itemize}
+}
+\ex{}{
+Lancio un dado.
+\[
+A = \text{"esce un numero tra 1 e 6"}
+\]
+\[
+B = \text{"esce un numero maggiore di 6"}
+\]
+\[
+C = \text{"esce il numero 3"}
+\]
+\begin{itemize}
+    \item Se $\Omega = \{1,2,3,4,5,6\}$, allora:
+    \begin{itemize}
+        \item $A = \Omega$ (evento certo), 
+        \item $B = \emptyset$ (evento impossibile), 
+        \item $C = \{3\}$ (evento con un solo esito favorevole).
+    \end{itemize}
+    \item Se $\Omega = \mathbb{R}$, allora:
+    \begin{itemize}
+        \item $A = \{1,2,3,4,5,6\} \subset \Omega$ (evento quasi certo),
+        \item $B = (6,+\infty)$ (evento quasi impossibile),
+        \item $C = \{3\}$ (evento con un solo esito favorevole).
+    \end{itemize}
+\end{itemize}
+}
+
+
+\section{Regole del calcolo probabilistico}
+Ad ogni relazione logica possiamo associare un'operazione insiemistica:
+
+\begin{center}
+  \begin{tabular}{c|c}
+    Connettivi Logici & Connettvi Insiemistici\\
+    \hline
+    $ A \lor B $ & $ A \cup B $ \\
+    $ A \land B $ & $ A \cap B $ \\
+    $ \neg A $ & $ A^{c} $ \\
+    $ A \implies B $ & $ A \subseteq B $ \\
+    $ A \iff B $ & $ A = B $
+\end{tabular}
+\end{center}
+
+\nt{
+  Nella prima colonna, $ A $ e $ B $ sono eventi come affermazioni, mentre nella colonna di destra sono degli insiemi.
+}
+
+
+\subsection{Assiomi della probabilita'}
+Poniamo tre assiomi fondamentali da cui possiamo partire per derivare tutte le operazioni e proprieta' che ci servono:
+
+\nt{
+  Per noi tutti i sottoinsiemi di $ \Omega $ sono eventi (anche se non sara' sempre cosi)
+}
+
+\dfn{Assiomi fondamentali della probabilità}{
+  \assiomalabel{assioma1} A ciascun sottoinsieme (o evento) $A$ di $\Omega$ è assegnato un numero $\mathbb{P}(A)$ che verifica:
+  \[ 0 \leq \mathbb{P}(A) \leq 1. \]
+  Tale numero $\mathbb{P}(A)$ si chiama \textbf{probabilità} dell'evento $A$.
+
+  \assiomalabel{assioma2} $\mathbb{P}(\Omega) = 1$.
+
+  \assiomalabel{assioma3} Vale la proprietà di \textbf{additività numerabile}\footnote{Anche detta \textbf{$\sigma$-additività}.}: sia $A_1, A_2, \ldots, A_n, \ldots$ una successione di sottoinsiemi di $\Omega$ tra loro disgiunti\footnote{In formule: $A_i \cap A_j = \emptyset$, per ogni $i \neq j$. In altri termini, non hanno elementi in comune.} e sia
+  \[ A = \bigcup_{n=1}^{\infty} A_n. \]
+  Allora
+  \[ \mathbb{P}(A) = \sum_{n=1}^{\infty} \mathbb{P}(A_n). \]
+}
+
+\nt{
+  Quindi, per il primo assioma, esiste una funzione probabilita' $ \mathbb{P}(A): \powerset (\Omega) \to [0,1] $.
+}
+
+\dfn{Spazio di probabilità}{
+La coppia $(\Omega, \mathbb{P})$ si dice \textbf{spazio di probabilità} o modello matematico dell’esperimento aleatorio
+}
+
+\subsection{Conseguenze degli assiomi}
+
+\thm{}{
+  Sia \( \Omega \) spazio campionario e \( \mathbb{P} \) probabilità su \( \Omega \) (\( (\Omega, \mathbb{P}) \) è uno spazio di probabilità con \( \mathbb{P}: \powerset(A) \to [0,1] \)). Dagli assiomi \ref{assioma1}, \ref{assioma2}, \ref{assioma3} deduciamo le cose seguenti:
+  \begin{enumerate}
+  \item \( \mathbb{P}(\emptyset) = 0 \)
+  \item \label{item:finite_additivity} \textbf{Additività finita}: \( (A_i)_{i = 1,\ldots,n}.\ \forall i \neq j.\, A_i \cap A_j = \emptyset \implies \mathbb{P}\left(\bigcup_{i=1}^{n} A_i\right) = \sum_{i=1}^{n} \mathbb{P}(A_i) \)
+  \item \( \mathbb{P}(A^c) = 1 - \mathbb{P}(A) \)
+  \item \textbf{Monotonia}: \( A \subseteq B \implies \mathbb{P}(A) \leq \mathbb{P}(B) \)
+  \end{enumerate}
+}
+
+\pf{Dimostrazione}{
+
+  \begin{enumerate}
+    \item Devo mostrare che \( \mathbb{P}(\emptyset) = 0 \). Per semplicità definiamo \( p \coloneqq \mathbb{P}(\emptyset) \). Uso l'assioma \ref{assioma3} con la successione \( (A_n)_{n \in \mathbb{N}} \) dove \( \forall i \in \mathbb{N}.\, A_i = \emptyset \), che sono tutti eventi disgiunti. Quindi:
+    \[
+      \mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i) = \sum_{i=1}^{\infty} p.
+    \]
+    Inoltre:
+    \[
+      \bigcup_{i=1}^{\infty} A_i = \emptyset \implies p = \sum_{i=1}^{\infty} p.
+    \]
+    L'equazione è soddisfatta solo per \( p = 0 \).
+
+    \item Supponiamo di avere una sequenza finita disgiunta \( A_1, \ldots, A_n \). Definisco \( (B_i)_{i \in \mathbb{N}} \) tale che \( B_i = A_i \) per \( i = 1,\ldots,n \) e \( B_i = \emptyset \) per \( i > n \). Usando l'assioma \ref{assioma3}:
+    \[
+      \mathbb{P}\left(\bigcup_{i=1}^{\infty} B_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(B_i) = \sum_{i=1}^{n} \mathbb{P}(A_i).
+    \]
+
+    \item Per definizione di complemento, \( A^c \cup A = \Omega \) e \( A^c \cap A = \emptyset \). Per additività:
+    \[
+      \mathbb{P}(A^c) + \mathbb{P}(A) = \mathbb{P}(\Omega) = 1 \quad (\text{per l'assioma \ref{assioma2}}).
+    \]
+
+    \item Se \( A \subseteq B \), allora \( B = A \cup (B \setminus A) \), con \( A \) e \( B \setminus A \) disgiunti. Per additività:
+    \[
+      \mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B \setminus A) \geq \mathbb{P}(A).
+    \]
+  \end{enumerate}
+}
+
+\thm{Probabilità unione non disgiunta}{
+  Siano \( A \) e \( B \) eventi:
+  \begin{equation}
+    \label{eq:unione}
+    \mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)
+  \end{equation}
+    
+  
+}
+
+\pf{Dimostrazione}{
+  \( A \cup B = (A \setminus B) \cup (B \setminus A) \cup (A \cap B) \). Per additività:
+  \[
+    \mathbb{P}(A \cup B) = \mathbb{P}(A \setminus B) + \mathbb{P}(B \setminus A) + \mathbb{P}(A \cap B).
+  \]
+  Osservando che:
+  \[
+    \mathbb{P}(A \setminus B) + \mathbb{P}(A \cap B) = \mathbb{P}(A), \quad \mathbb{P}(B \setminus A) + \mathbb{P}(A \cap B) = \mathbb{P}(B),
+  \]
+  si ottiene la formula.
+}
+
+\nt{
+  La formula si complica con un numero di eventi maggiore di 2. Per \( n=3 \):
+  \[
+    \mathbb{P}(A \cup B \cup C) = \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(C) - \mathbb{P}(A \cap B) - \mathbb{P}(B \cap C) - \mathbb{P}(A \cap C) + \mathbb{P}(A \cap B \cap C).
+  \]
+}
+\section{Probabilita' discreta} \label{dfn:probDiscr}
+Finora sappiamo solo le "regole" che deve seguire una funzione per essere una probabilita'. Passiamo ora a vedere come calcolare il valore di un certo tipo di probabilita', la \textit{probabilita' discreta}:
+\dfn{Probabilità discreta}{
+  Chiamo probabilità discreta una funzione probabilità \( \mathbb{P} \) su $ \Omega $, tale che:
+  \[
+    \exists \overline{\Omega} \subseteq \Omega,\ \overline{\Omega} \text{ e' finito o numerabile}.\ \mathbb{P}(\overline{\Omega}) = 1
+  \]
+}
+
+Ovvero, una probabilita' e' discreta se il suo spazio campionario minimo e' finito o numerabile. Questa condizione e' necessaria per poter poi definire un modo per effettivamente calcolare il valore della probabilita' (discreta) di un qualunque evento.
+
+Diamo prima una definizione di una tale probabilità:
+\dfn{Delta di Dirac}{
+  Sia \( \Omega = \mathbb{R} \), \( x_0 \in \mathbb{R} \), allora si chiama delta di Dirac centrato in \( x_0 \) la funzione:
+\[
+  \begin{aligned} 
+    \delta_{x_0}: \powerset(\mathbb{R}) &\to [0,1]\\
+    A &\mapsto \delta_{x_0}(A) = \begin{cases}
+    1 & x_0 \in A\\
+    0 & x_0 \notin A
+    \end{cases}
+  \end{aligned}
+\]
+}
+
+Notare che per definizione, la funzione di Dirac è una probabilità discreta, dato che soddisfa tutti gli assiomi per essere una probabilita' e il suo spazio campionario minimo e' formato da un solo elemento di $ \Omega $, quindi e' discreta (ma non molto utile dato che puo' assumere solo due valori). Però, tramite le delta di Dirac, siamo in grado di costruire qualunque altra probabilità discreta:
+
+Sia \( \Omega = \mathbb{R} \). Prendiamo un numero contabile \( n \) di eventi singoletto \( x_1,x_2,\ldots,x_n \in \mathbb{R} \) a cui corrispondono \( p_1,p_2,\ldots,p_n \in \mathbb{R} \) tale che:
+\[
+ \forall i = 1,\ldots,n.\ p_i \in [0,1], \qquad  \sum_{i=1}^{n} p_i = 1 
+\]
+Definiamo la funzione:
+\[
+\begin{aligned}
+  \mathbb{P}: \powerset(\Omega) &\to [0,1]\\
+  A &\mapsto \sum_{i=1}^{n} p_i \delta_{x_i}(A)
+\end{aligned}
+\]
+\( \mathbb{P} \) è una combinazione lineare di delta di Dirac. Essendo una combinazione convessa, \( \mathbb{P} \in [0,1] \) e si può dimostrare che soddisfa gli altri due assiomi (\ref{assioma2} e \ref{assioma3}), quindi è una probabilità discreta! Variando le \( x \) e le \( p \) è possibile generare qualsiasi funzione \( \mathbb{P} \) discreta.
+
+\ex{}{
+  \( \Omega = \{1,2,3,4,5,6\},\ \forall i = 1,\ldots,6.\ x_i = i,\ p_i = \frac{1}{6} \), la funzione \( \mathbb{P} \) associata è:
+  \[
+   P(A) = \sum_{ i=1}^{6} \frac{1}{6} d_{x_i}(A)
+  \]
+  \[
+    A = \{1,2,3,4,5,6\} \implies P(A) = 1 
+  \]
+  \[
+    B = (6,+\infty) \implies P(B) = 0
+  \]
+  \[
+    C = \{1,2,3,4,5,6,7,8,9\} \implies P(C) = 1
+  \]
+}
+
+\dfn{}{
+  Si chiama evento quasi certo un evento \( A \) tale che \( \mathbb{P}(A) = 1 \).
+}
+
+\dfn{}{
+  Si chiama evento quasi impossibile un evento \( A \) tale che \( \mathbb{P}(A) = 0 \).
+}
+
+Posso allargare \( \Omega \) quanto voglio perché tanto fuori dall'insieme minimo che comprende tutti gli eventi possibili le probabilità che aggiungo sono quasi impossibili e quindi hanno probabilità 0 e non cambiano il valore totale della somma.
+
+\subsection{Probabilita' uniforme}
+\thm{Principio di porbabililità uniforme}{
+  Si cosideri un esperimento aleatorio aleatorio con spazio campionario \( \Omega = \{w_1,\dots, w_N\} \) finito e discreto, con esiti sono equiprobabili $\mathbb{P}(\{w_1\}) = \mathbb{P}(\{w_2\}) =\dots = \mathbb{P}(\{w_N\})$.
+
+  Si dice allora che $\mathbb{P}$ è la \textbf{probabilità uniforme} su $\Omega$ e valgono le seguenti proprietà:
+  \begin{enumerate}
+    \item Dato un qualunque evento elementare $A = \{w_i\}$, si ha:
+    \[
+      \mathbb{P}(A) = \frac{1}{N}
+    \]
+    \item Dato un qualunque evento $A \subseteq \Omega$, vale la \textit{formula di Laplace}:
+    \[
+      \mathbb{P}(A) = \frac{|A|}{N} = \frac{\text{numero di esiti favorevoli}}{\text{numero di esiti possibili}}
+    \]
+  \end{enumerate}
+}
+
+\pf{Dimostrazione}{
+  \begin{enumerate}
+    \item Dimostro il punto 1:
+    
+    Per ipotesi sappiamo che $\mathbb{P}(\{w_1\}) = \mathbb{P}(\{w_2\}) =\dots = \mathbb{P}(\{w_N\})$ e per il \textit{principio di additività} si può costruire il seguente sistema:
+    \[
+      \begin{cases}
+        \mathbb{P}(\{w_1\}) + \mathbb{P}(\{w_2\}) + \dots + \mathbb{P}(\{w_N\}) = 1\\
+        \mathbb{P}(\{w_1\}) = \mathbb{P}(\{w_2\}) \\
+        \mathbb{P}(\{w_2\}) = \mathbb{P}(\{w_3\}) \\
+        \vdots\\
+        \mathbb{P}(\{w_{N_1}\}) = \mathbb{P}(\{w_N\})
+      \end{cases}
+    \]
+    Da cui si ricava che: 
+    \[\forall i\in[1,\dots, N] \quad \mathbb{P}(\{w_i\}) = \frac{1}{N}\]
+
+    \item Dimostro il punto 2:
+    Sia $A = \{w_{i_1},\dots,w_{i_k}\}$, con $k \leq N$. Per definizione di probabilità:
+    \[
+      \mathbb{P}(A) = \mathbb{P}(\{w_{i_1},\dots,w_{i_k}\}) = \mathbb{P}(\{w_{i_1}\}) + \dots + \mathbb{P}(\{w_{i_k}\}) = \frac{k}{N}
+    \]
+  \end{enumerate}
+}
+% \end{document}

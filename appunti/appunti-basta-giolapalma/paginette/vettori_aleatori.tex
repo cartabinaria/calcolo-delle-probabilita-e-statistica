@@ -1,0 +1,476 @@
+% \begin{document}
+\chapter{Vettori Aleatori}
+
+\section{Introduzione}
+
+Si introduce tale concetto di \textit{vettori aleatori} per trattare variabili aleatorie che non sono più scalari, ma vettori. Infatti ciò che è stato presentato fino ad ora, dato uno spazio di probabilità $(\Omega, \mathbb{P})$, sono esempi con una sola variabile aleatoria, che assume valori in $\mathbb{R}$, tuttavia, è possibile definire più variabili aleatoria in un qualsiasi spazio di probabilità, questo ci induce, così, a considerare la tupla $(X,X_1, \dots, X_n)$ definita su $\Omega$ e che assume valori in $\mathbb{R}^n$ (in base alla quantità di variabili aleatorie). Questa tupla è detta \textit{vettore aleatorio}
+
+\dfn{Vettore aleatorio}{
+    Sia $(\Omega, \mathbb{P})$ uno spazio di probabilità, una qualunque funzione
+    \begin{equation}
+        (X_1, \dots, X_n): \Omega \to \mathbb{R}^n
+    \end{equation}
+    è definita \textbf{vettore aleatorio}
+}
+
+\subsection{Legge di un vettore aleatorio}
+Come per le variabili aleatorie, possiamo associare ad ogni vettore aleatorio la sua distribuzione o legge. Diamo la definizione solo per il caso bidimensionale.
+
+\dfn{Legge di un vettore aleatorio}{
+    Sia $(\Omega, \mathbb{P})$ uno spazio di probabilità $(X,Y):\Omega\to\mathbb{R}^2$. Si definisce \textbf{legge di un vettore aleatorio} la probabilità
+    \begin{equation}
+        \mathbb{P}_{(X,Y)} = \mathcal{P}(\mathbb{R^2})\to [0,1]
+    \end{equation}
+    definita da
+    \begin{equation}
+        \mathbb{P}_{(X,Y)}(B) = \mathbb{P}((X,Y)\in B) \quad \forall B\subset\mathbb{R}^2
+    \end{equation}
+    Per dire che $(X, Y )$ ha distribuzione o legge $\mathbb{P}_{(X,Y)}$ si screive
+    \[
+        (X,Y)\sim\mathbb{P}_{(X,Y)}
+    \]
+}
+
+\nt{
+    Se $B\subset\mathbb{R}^2$è il prodotto cartesiano di due insiemi $B_1$ e $B_2$ in $\mathbb{R}$, allora
+    \[
+        \mathbb{P}(\xy\in B_1\times B_2) = \P(\{X\in B_1\}\cap\P\{Y\in B_2\})
+    \]
+    Infatti l'evento $\{(X,Y)\in B_1\times B_2\}$ è dato da
+    \[
+        \{\xy\in B_1\times B_2\} = \{X\in B_1\}\cap\{Y\in B_2\}
+    \]
+}
+
+$\mathbb{P}(\{X \in B_1\} \cap \{Y \in B_2\})$ verrà scritto nella forma nella forma $\mathbb{P}(X \in B_1, Y \in B_2)$.
+\subsection{Indipendenza di variabili aleatorie}
+Si può estendere il concetto di indipendenza di eventi a quello di indipendenza di variabili aleatorie. Intuitivamente due variabili aleatorie $X$ e $Y$ sono indipendenti se la conoscenza del valore di $X$ non fornisce informazioni sul valore di $Y$ e viceversa. Matematicamente $n$ variabili aleatorie $X_1, \dots, X_n$ sono indipendenti se gli eventi da esse generati, ovvero
+\[
+    \{X_1\in B_1\} \dots \{X_n\in B_n\} \text{ al variare di tutti i sottoinsiemi } B_1, \dots, B_n \text{ in }\mathbb{R}
+\]
+sono indipendenti
+\dfn{Varaibili aleatorie indipendenti}{
+    Sia $(\Omega, \mathbb{P})$ uno spazio di probabilità e $X_1, \dots, X_n$ variabili aleatorie definite su $\Omega$. Si dice che $X_1, \dots, X_n$ sono \textbf{indipendenti} se
+    \begin{equation}
+        \mathbb{P}(X_1\in B_1, \dots, X_n\in B_n) = \prod_{i=1}^n \mathbb{P}(X_i\in B_i) \quad \forall B_1, \dots, B_n\subset\mathbb{R}
+    \end{equation}
+    Inoltre la notazione per indicare due indipendenti $X$ e $Y$ è
+    \[
+        X\dperp Y
+    \] 
+}
+\nt{
+    Si dice anche che due variabili aleatorie sono indipendenti se la distribuzione congiunta si fattorizza nel prodotto delle marginali
+}
+Concludiamo questa sezione con il seguente risultato, in cui si aﬀerma che funzioni di variabili aleatorie indipendenti sono indipendenti
+
+\mprop{indipendenza di funzioni di variabili aleatorie}{
+    Siano $X$ e $Y$ due variabili aleatorie indipendenti e siano $f:\mathbb{R}\to\mathbb{R}$ e $g:\mathbb{R}\to\mathbb{R}$ due funzioni arbitrarie. Allora le varaibili aleatorie $f(X)$ e $g(Y)$ sono indipendenti
+}
+\pf{Dimostrazione}{ \label{prop:indep_var_aleat}
+    Siano $B_1, B_2\subset\mathbb{R}$ due sottoinsiemi arbitrari. Si deve dimostrare che
+    \[
+        \P(f(X)\in B_1, g(Y)\in B_2) = \P(f(X)\in B_1)\cdot\P(g(Y)\in B_2)
+    \]
+
+    Siano 
+    \begin{align*}
+        f^{-1}(B_1) &= \{x\in\mathbb{R} : f(x)\in B_1\}\\
+        g^{-1}(B_2) &= \{y\in\mathbb{R} : g(y)\in B_2\}
+    \end{align*}
+    Le controimmagini di $B_1$ e $B_2$ tramite $f$ e $g$, rispettivamente. Allora
+    \[
+        \{f(X)\in B_1\} = \{X\in f^{-1}(B_1)\} \quad \text{e} \quad \{g(Y)\in B_2\} = \{Y\in g^{-1}(B_2)\}
+    \]
+    Quindi
+    \begin{align*}
+        \P(f(X)\in B_1, g(Y)\in B_2) &= \P(\{X\in f^{-1}(B_1)\}\cap\{Y\in g^{-1}(B_2)\})\\
+        &= \P(X\in f^{-1}(B_1))\cdot\P(Y\in g^{-1}(B_2))\\
+        &= \P(f(X)\in B_1)\cdot\P(g(Y)\in B_2)
+    \end{align*}
+}
+\nt{
+    Per \ref{prop:indep_var_aleat} si deduce che se $X$ e $Y$ sono
+    indipendenti allora non pu`o esistere alcuna dipendenza funzionale tra $X$ e $Y$, tranne nel caso in cui almeno una tra $X$ e $Y$ sia una costante.
+
+    In altre parole, non può esistere aluna funzione $f:\mathbb{R}\to\mathbb{R}$ tale che
+    \[
+        Y = f(X)
+    \]
+
+}
+
+\section{Vettori aleatori discreti}
+In questa sezione studiamo una particolare classe di vettori aleatori, i vettori aleatori discreti (bidimensionali)
+
+% \begin{quote}
+%     (e' quella che ci si aspetta) \citep{il_basta}
+% \end{quote}
+
+\dfn{vettore aleatorio discreto}{
+    Sia $(\Omega, \mathbb{P})$ uno spazio di probabilità e $(X,Y)$ un vettore aleatorio. Si dice che $(X,Y)$ è un \textbf{vettore aleatorio discreto} se sia $X$ che $Y$ sono variabili aleatorie discrete
+}
+Si noti che il vettore $\xy$ assume un numero finito o al più numerabile di valori, dati al più da tutte le coppie $\mathcal{S}_X\times \mathcal{S}_Y $. Quindi il supporto di $\xy$ è un sottoinsieme di $\mathcal{S}_X\times \mathcal{S}_Y$. Adesso prensento la la dentisità discreta
+\dfn{Densitò discreta congiunta}{
+    Sia $(\Omega, \mathbb{P})$ uno spazio di probabilità e $(X,Y)$ un vettore aleatorio discreto. La funzione $p_{(X,Y)}:\mathbb{R}^2\to[0,1]$ definita da
+    \[
+        p_{(X,Y)}(x,y) =\P(X=x, Y=y) = \mathbb{P}(\xy=(x,y)) \quad \forall (x,y)\in\mathcal{S}_X\times\mathcal{S}_Y
+    \]
+    è detta \textbf{densità discreta congiunta} di $X$ e $Y$
+}
+
+Si noti che $p_{(X,Y)}$ è la probabilità che il vettore aleatorio $\xy$ assuma il valore $(x,y)$, quindi $p_{(X,Y)}(x,y)$ verifica le seguenti disuguaglianze
+\[
+    0\leq p_{(X,Y)}(x,y) \leq 1\quad \forall (x,y)\in\mathcal{S}_X\times\mathcal{S}_Y
+\]
+
+\thm{
+    sulla legge congiunta di un vettore aleatorio discreto
+}{ \label{thm:legge_congiunta_discreta}
+    Sia $(\Omega, \mathbb{P})$ uno spazio di probabilità e $(X,Y)$ un vettore aleatorio discreto. Sia $\mathcal{S}_X$ e $\mathcal{S}_Y$ i supporti di $X$ e $Y$, rispettivamente. Allora:
+    \begin{itemize}
+        \item $\p =0\,\forall(x,y)\notin\ss$
+        \item $\sum_{x\in\mathcal{S}_X}\sum_{y\in\mathcal{S}_Y}p_{(X,Y)}(x,y) = 1$
+        \item Vale la seguente formula
+        \begin{equation} \label{eq:formula_probabilita_totali}
+            \P(\xy\in B) = \sum_{(x,y)\in B}p_{(X,Y)}(x,y) \quad \forall B\subset\mathcal{S}_X\times\mathcal{S}_Y
+        \end{equation}
+    \end{itemize}
+    
+}
+\subsection{Densità discreta congiunta e densità discrete marginali}
+In questa sezione si indaga la relazione tra la densità congiunta $p_(X,Y)$ e le marginali $p_X$ e $p_Y$. Ci si ricordi che
+    \begin{align*}
+        p_X(x) &= \P(X=x) \\
+        p_Y(y) &= \P(Y=y) \\
+        p_{(X,Y)}(x,y) &= \P(X=x, Y=y)
+    \end{align*}
+
+Dalla formula delle probabilità totali otteniamo il seguente risultato
+\thm{}{ \label{thm:formula_probabilita_totali}
+    Sia $\xy$ un vettore aleatorio discreto. Allora
+    \begin{align*}
+        p_X(x) &= \sum_{y\in\mathcal{S}_Y}p_{(X,Y)}(x,y) \quad \forall x\in\mathcal{S}_X\\
+        p_Y(y) &= \sum_{x\in\mathcal{S}_X}p_{(X,Y)}(x,y) \quad \forall y\in\mathcal{S}_Y
+    \end{align*}
+}
+\pf{Dimostrazione}{
+    Dimostriamo solo la prima formula nel caso in cui $S_Y$ è un insieme
+    finito: $S_Y = \{y_1, \ldots, y_m\}$. Quindi dobbiamo dimostrare che, per ogni $x_i \in S_X$ fissato,
+    vale
+    \[
+    p_X(x_i) = \sum_{j=i}^{m} p_{(X,Y)}(x_i, y_j).
+    \]
+    Riscritta in termini di $\mathbb{P}$ diventa
+    \[
+        \mathbb{P}(X = x_i) = \sum_{j=i}^{m} \mathbb{P}(X = x_i, Y = y_j)
+    \]
+    Poniamo
+    \[
+    A = \{X = x_i\}, \qquad B_j = \{Y = y_j\}, \quad \forall j = 1, \ldots, m.
+    \]
+    Gli eventi $B_1, \ldots, B_m$ sono una partizione di $\Omega$. Quindi, dalla formula delle probabilità
+    totali abbiamo che
+    \[
+    \mathbb{P}(A) = \sum_{j=i}^{m} \mathbb{P}(A \cap B_j),
+    \]
+    che corrisponde all'uguaglianza.
+}
+\subsubsection{Tabella della densità discreta congiunta}
+Nel caso in cui sia $\mathcal{S}_X$ che $\mathcal{S}_Y$ siano finiti, quindi
+\[
+    \mathcal{S}_X = \{x_1, \ldots, x_n\} \quad \text{e} \quad \mathcal{S}_Y = \{y_1, \ldots, y_m\}
+\]
+possiamo riportare i valori di $p_{(X,Y)} $in una tabella:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \diagbox{$X$}{$Y$} & $y_1$ & $y_2$ & $\cdots$ & $y_m$ & $p_X$ \\
+        \hline
+        $x_1$ & $p_{(X,Y)}(x_1, y_1)$ & $p_{(X,Y)}(x_1, y_2)$ & $\cdots$ & $p_{(X,Y)}(x_1, y_m)$ & $p_X(x_1)$ \\
+        \hline
+        $x_2$ & $p_{(X,Y)}(x_2, y_1)$ & $p_{(X,Y)}(x_2, y_2)$ & $\cdots$ & $p_{(X,Y)}(x_2, y_m)$ & $p_X(x_2)$ \\
+        \hline
+        $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ \\
+        \hline
+        $x_n$ & $p_{(X,Y)}(x_n, y_1)$ & $p_{(X,Y)}(x_n, y_2)$ & $\cdots$ & $p_{(X,Y)}(x_n, y_m)$ & $p_X(x_n)$ \\
+        \hline
+        $p_Y$ & $p_Y(y_1)$ & $p_Y(y_2)$ & $\cdots$ & $p_Y(y_m)$ & $1$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Per il \ref{thm:formula_probabilita_totali} si ha che i valori di $p_X$ si ottengono sommando i valori di $p_{(X,Y)}$ lungo le righe, mentre i valori di $p_Y$ si ottengono sommando i valori di $p_{(X,Y)}$ lungo le colonne. Infine, sommando i valori dell'ultima colonna (quindi i valori di $p_X$) si ottiene $1$. Analogamente, sommando i valori dell'ultima riga (quindi i valori di $p_Y$) si ottiene ancora $1$. Questo spiega la presenza del numero $1$ nell'angolo in basso a destra della tabella.
+
+\subsection{Indipendenza e Densità discreta congiunta}
+Conoscendo la densità discreta congiunta $p_{(X,Y)}$ di un vettore aleatorio discreto e possibile ricostruire le marginali $p_X$ e $p_Y$. Non è possibile viceversa
+
+\ex{
+    Esercizio sulla densità discreta congiunta
+}{
+    Si lanciano due monete e si considerano le seguenti variabili aleatorie
+    \begin{align*}
+        X &= \text{“vale 1 se l'esito del lancio della prima moneta è testa, vale 0 altrimenti”}\\
+        Y &= \text{“vale 1 se l'esito del lancio della seconda moneta è testa, vale 0 altrimenti”}
+    \end{align*}
+
+    Se si considera il vettore aleatorio $\xy$, allora
+    \begin{center}
+        \begin{tabular}{c|c|c|c}
+            
+            \diagbox{$X$}{$Y$} & $0$ & $1$ &$p_X$\\
+            \hline
+            $0$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{2}$\\
+            \hline
+            $1$ & $\frac{1}{4}$ & $\frac{1}{4}$ &$\frac{1}{2}$\\
+            \hline
+            $p_Y$ & $\frac{1}{2}$ & $\frac{1}{2}$ & $1$\\
+        \end{tabular}
+    \end{center}
+    Se si considera il vettore aleatorio $(X,X)$, allora
+    \begin{center}
+        \begin{tabular}{c|c|c|c}
+            \diagbox{$X$}{$X$} & $0$ & $1$ &$p_X$\\
+            \hline
+            $0$ & $\frac{1}{2}$ & $0$ & $\frac{1}{2}$\\
+            \hline
+            $1$ & $0$ & $\frac{1}{2}$ &$\frac{1}{2}$\\
+            \hline
+            $p_X$ & $\frac{1}{2}$ & $\frac{1}{2}$ & $1$\\
+            
+        \end{tabular}
+    \end{center}
+}
+
+Adesso si osservi il seguente teorema
+\thm{
+    Indipendenza di variabili aleatorie discrete
+}{
+    Siano $X$ e $Y$ variabili aleatorie discrete. Allora $X$ e $Y$ sono indipendenti se e solo se
+    \begin{equation} \label{eq:indep_var_aleat}
+        p_{(X,Y)}(x,y) = p_X(x)p_Y(y) \quad \forall (x,y)\in\mathcal{S}_X\times\mathcal{S}_Y
+    \end{equation}
+}
+\pf{Dimostrazione}{
+    \begin{itemize}
+        \item \textbf{($\Leftarrow$)} si deve dimostrare che se vale \ref{eq:indep_var_aleat} allora $X$ e $Y$ sono indipendenti. 
+        
+        Siano $B_1$ e $B_2$ due sottoinsiemi arbitrari di $\mathbb{R}$. Si deve dimostrare che
+        \[
+            \P(X\in B_1, Y\in B_2) = \P(X\in B_1)\cdot\P(Y\in B_2)
+        \]
+        Dato che $\P(X\in B_1, Y\in B_2) = \P(\xy\in B_1\times B_2 )$ per la \ref{eq:formula_probabilita_totali} si ha che
+        \[
+            \P(X\in B_1, Y\in B_2) = \sum_{(x,y)\in B_1\times B_2}p_{(X,Y)}(x,y) =\sum_{x\in B_1}\sum_{y\in B_2}p_{(X,Y)}(x,y)
+        \]
+        Per \label{eq:indep_var_aleat} si ha che
+        \[
+            \sum_{x\in B_1}\sum_{y\in B_2}p_{(X,Y)}(x,y) = \sum_{x\in B_1}\sum_{y\in B_2}p_X(x)p_Y(y) 
+        \]
+        Eseguendo ulteriori passaggi si ha che
+        \[
+            \sum_{x\in B_1}\sum_{y\in B_2}p_X(x)p_Y(y) = \sum_{x\in B_1}p_X(x)\cdot\sum_{y\in B_2}p_Y(y) = \P(X\in B_1)\cdot\P(Y\in B_2)
+        \]
+        Quindi 
+        \[
+            \P(X\in B_1, Y\in B_2) = \P(X\in B_1)\cdot\P(Y\in B_2)
+        \]
+        Dimostrato
+        \item \textbf{($\Rightarrow$)} si deve dimostrare che se $X$ e $Y$ sono indipendenti allora vale \ref{eq:indep_var_aleat}. Siano $B_1=\{x\}$ e $B_2=\{y\}$ due sottoinsiemi arbitrari di $\mathbb{R}$ per la definizione di indipendenza si ottiene l'uguaglianza \ref{eq:indep_var_aleat}
+        
+        Dimostrato
+    \end{itemize}
+}
+
+Esercizietto
+
+\ex{}{
+    Siano $X$ e $Y$ due variabili aleatorie discrete con densità discreta congiunta
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            \diagbox{X}{Y} & -1 & 5 & 10 & $p_X$ \\
+            \hline
+            0 &  & 0.12 &  & 0.4 \\
+            \hline
+            5 &  &  &  &  \\
+            \hline
+            $p_Y$ & 0.3 &  &  & 1 \\
+            \hline
+            \end{tabular}
+    \end{center}
+    \begin{enumerate}
+        \item Completare la tabella in modo che $X$ e $Y$ siano indipendenti.
+        \item Calcolare $P(X < Y)$.
+        \item Calcolare $P(\vert XY \vert \ge 5)$ e $P(X+Y > 5)$.
+        \item Siano $U = \vert XY \vert$ e $V = X + Y$. Trovare la densità discreta congiunta di $U$ e $V$ e le densità marginali
+    \end{enumerate}
+}
+\pf{Soluzione}{
+    Sia data al bonzo
+}
+\subsection{Valore atteso e varianza di una funzione di $(X, Y)$}
+
+Nel seguito capiter`a spesso di dover calcolare valore atteso e varianza di una funzione di $(X, Y )$:
+\[
+    h(X, Y ) 
+\]
+Risulta dunque particolarmente utile il seguente risultato
+\thm{
+    sul valore atteso e varianza di una funzione di un vettore aleatorio discreto
+}{ \label{thm:valore_atteso_varianza}
+    Siano $\xy$ un vettore aleatorio discreto e $h:\mathbb{R}^2\to\mathbb{R}$. Allora
+    \[
+        \mathbb{E}[h(X,Y)] = \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}h(x,y)p_{(X,Y)}(x,y)
+    \]
+    e
+    \[
+        Var(h(X,Y)) = \mathbb{E}[(h\xy-\mathbb{E}[h\xy])^2] = \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}(h(x,y)-\mathbb{E}[h(X,Y)])^2p_{(X,Y)}(x,y)
+    \]
+    Vale inoltre la formula
+    \[
+        Var(h(X,Y)) = \mathbb{E}[h(X,Y)^2] - (\mathbb{E}[h(X,Y)])^2 = \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}h(x,y)^2p_{(X,Y)}(x,y) - (\mathbb{E}[h(X,Y)])^2
+    \]
+}
+
+\cor{somma di $X$ e $Y$}{
+    Siano $X$ e $Y$ due variabili aleatorie discrete. Siano inoltre $a$ e $b$ due costanti. Allora
+    \[
+        \mathbb{E}[aX + bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]
+    \]
+}
+\pf{Dimostrazione}{
+    Per il teorema \ref{thm:valore_atteso_varianza} si ha che con $h(x,y)=ax+by$ si ottiene
+    \[
+        \begin{aligned}
+            \mathbb{E}[aX + bY] &= \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}(ax+by)p_{(X,Y)}(x,y)\\
+            &= \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}axp_{(X,Y)}(x,y) + \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}byp_{(X,Y)}(x,y)\\
+            &= a\sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}xp_{(X,Y)}(x,y) + b\sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}yp_{(X,Y)}(x,y)\\
+            &= a\sum_{x\in\mathcal{S}_X}x\sum_{y\in\mathcal{S}_Y}p_{(X,Y)}(x,y) + b\sum_{y\in\mathcal{S}_Y}y\sum_{x\in \mathcal{S}_X} p_{(X,Y)}(x,y)\\
+            &= a\sum_{x\in\mathcal{S}_X}xp_X(x) + b\sum_{y\in\mathcal{S}_Y}yp_Y(y)\\
+            &= a\mathbb{E}[X] + b\mathbb{E}[Y]
+        \end{aligned}
+    \]
+}
+
+\cor{Prodotto $X$ e $Y$}{
+    Siano $X$ e $Y$ due variabili aleatorie discrete. Se $X$ e $Y$ sono indipendenti, allora
+    \[
+        \mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]
+    \]
+}
+\nt{
+    NON VALE IL CONTRARIO: se $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$ non è necessariamente vero che $X$ e $Y$ sono indipendenti
+}
+\pf{Dimostrazione}{
+    Per il teorema \ref{thm:valore_atteso_varianza} si ha che con $h(x,y)=xy$ si ottiene
+    \[
+        \begin{aligned}
+            \mathbb{E}[XY] &= \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}xy p_{(X,Y)}(x,y)\\
+            &\underset{\substack{\uparrow \\ \text{indipendenza}}}{=} \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}xy p_X(x)p_Y(y)\\
+            &= \sum_{x\in\mathcal{S}_X}xp_X(x)\sum_{y\in\mathcal{S}_Y}yp_Y(y)\\
+            &= \mathbb{E}[X]\cdot\mathbb{E}[Y]
+        \end{aligned}
+    \]
+}
+\subsection{Indici di sintesi della distribuzione di un vettore aleatorio discreto}
+
+In termini intuitivi, la covarianza è una misura di come due variabili aleatorie (chiamiamole X e Y) tendono a variare insieme. Ti dice se, in media, quando una variabile assume valori sopra la sua media, l'altra tende a fare lo stesso, oppure se tende a fare il contrario.
+
+In altre parole, la covarianza misura la direzione della relazione lineare tra due variabili aleatorie. Se la covarianza è positiva, significa che quando una variabile aumenta, l'altra tende ad aumentare. Se è negativa, significa che quando una variabile aumenta, l'altra tende a diminuire. Se è zero, non c'è una relazione lineare tra le due variabili.
+
+\dfn{Covarianza}{ \label{def:covarianza}
+    Siano $X$ e $Y$ due variabili aleatorie discrete. La \textbf{covarianza} di $X$ e $Y$ è definita come
+    \[
+        Cov(X,Y) = \mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])] = \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}(x-\mathbb{E}[X])(y-\mathbb{E}[Y])p_{(X,Y)}(x,y)
+    \]
+    Se $Cov(X,Y) = 0$ si dice che $X$ e $Y$ sono \textbf{scorrelate}
+}
+
+\nt{
+    Si noti che la covarianza di $X$ e $Y$ è definita come il valore atteso della variabile aleatoria $h(X,Y)$, dove
+    \[
+        h(X,Y) = (X-\mathbb{E}[X])(Y-\mathbb{E}[Y])
+    \]
+    Quindi la seconda uguaglianza in \ref{def:covarianza} è una conseguenza del teorema \ref{thm:valore_atteso_varianza}W
+}
+\nt{
+    Si noti che
+    \[
+        Cov(X,X) = Var(X)
+    \]
+}
+\nt{
+    La covarianza è simmetrica, ovvero
+    \[
+        Cov(X,Y) = Cov(Y,X)
+    \]
+}
+
+Per calcolare la covarianza di $X$ e $Y$ è utile la seguente formula
+\thm{
+    Formula per la covarianza
+}{ \label{thm:formula_cov}
+    Siano $X$ e $Y$ due variabili aleatorie discrete. Allora
+    \[
+        Cov(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] = \sum_{(x,y)\in\mathcal{S}_X\times\mathcal{S}_Y}xy p_{(X,Y)}(x,y) - \mathbb{E}[X]\mathbb{E}[Y]
+    \]
+}
+\nt{
+    Se le variabili aleatorie $X$ e $Y$ sono indipendenti, allora sono scorrelate
+}
+\pf{Dimostrazione}{
+    Per definizione, si ha che
+\begin{align*}
+\text{Cov}(X,Y) &= \mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])] \\
+&= \mathbb{E}[XY - X\mathbb{E}[Y] - \mathbb{E}[X]Y + \mathbb{E}[X]\mathbb{E}[Y]]
+\end{align*}
+Dalla linearità del valore atteso, si ottiene (si noti che $\mathbb{E}[X]$ e $\mathbb{E}[Y]$ sono costanti)
+\begin{align*}
+\text{Cov}(X,Y) &= \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] - \mathbb{E}[X]\mathbb{E}[Y] + \mathbb{E}[X]\mathbb{E}[Y] \\
+&= \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]
+\end{align*}
+Infine se le variabili aleatorie $X$ e $Y$ sono indipendenti allora dal Corollario 2.2 si ha che
+\[ \mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y], \]
+quindi $\text{Cov}(X,Y) = 0$, ovvero $X$ e $Y$ sono scorrelate
+}
+
+La covarianza interviene nella formula della varianza di $X + Y$ 
+\thm{
+    Varianza della somma di due variabili aleatorie discrete
+}{ \label{thm:var_somma}
+    Siano $X$ e $Y$ due variabili aleatorie discrete. Allora
+    \[
+        Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)
+    \]
+    Se $X$ e $Y$ sono scorrelate, allora
+    \[
+        Var(X+Y) = Var(X) + Var(Y)
+    \]
+}
+
+\pf{Dimostrazione}{
+    Applicando il teorema \ref{thm:valore_atteso_varianza} con $h(x,y)=x+y$ si ha che
+    \[
+        \begin{aligned}
+            &Var(X+Y) = \mathbb{E}[(X+Y-\mathbb{E}[X+Y])^2] = \mathbb{E}[(X+Y-\mathbb{E}[X]-\mathbb{E}[Y])^2]\\
+            &= \mathbb{E}[(X - \mathbb{E}[X])^2 + (Y - \mathbb{E}[Y])^2 + 2(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] \\
+            &= \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y).
+        \end{aligned}
+    \]
+}
+\nt{
+    La covarianza è un indicatore di dipendenza tra due variabili aleatorie $X$ e $Y$. Più precisamente, supponiamo$^3$ che $\text{Var}(X) > 0$ e $\text{Var}(Y) > 0$. In tal caso, ha senso definire il \textbf{coefficiente di correlazione}
+\[ \rho_{X,Y} = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)}} \]
+Si può dimostrare che
+\[ -1 \le \rho_{X,Y} \le 1. \]
+Ricordiamo che se $\text{Cov}(X,Y) = 0$ allora $X$ e $Y$ si dicono scorrelate. Si noti che $\text{Cov}(X,Y) = 0$ equivale a $\rho_{X,Y} = 0$. Al contrario, quando la correlazione è massima in valore assoluto (quindi $\rho_{X,Y} = -1$ oppure $\rho_{X,Y} = 1$), si ha che
+\[ \rho_{X,Y} = \pm 1 \iff Y = aX + b. \]
+Più precisamente, $\rho_{X,Y} = \pm 1$ se e solo se esistono due costanti $a \ne 0$ e $b \in \mathbb{R}$ tali che $Y = aX + b$. La correlazione misura dunque se esiste tra $X$ e $Y$ una dipendenza di tipo lineare. Quindi quando $X$ e $Y$ sono scorrelate ($\text{Cov}(X,Y) = 0$) significa solamente che non esiste una dipendenza lineare tra $X$ e $Y$. Ricordiamo invece che se $X$ e $Y$ sono indipendenti allora non esiste alcuna dipendenza funzionale tra $X$ e $Y$ (non solo di tipo lineare). Perciò se sappiamo solamente che $\text{Cov}(X,Y) = 0$ non possiamo dire che $X$ e $Y$ sono indipendenti. Riassumendo:
+\begin{align*}
+X \perp \!\!\! \perp Y &\implies \text{Cov}(X,Y) = 0, \\
+\text{invece } X \not\perp \!\!\! \perp Y &\not\implies \text{Cov}(X,Y) = 0.
+\end{align*}
+
+}
