@@ -1,0 +1,56 @@
+\documentclass{report}
+
+\input{latex-temp/preamble.tex}
+\input{latex-temp/macros}
+\input{latex-temp/letterfonts}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{diagbox} % Removed as the package is not found
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+
+
+
+\newcommand{\dperp}{\mathrel{\bot\!\!\!\bot}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\p}{p_{(X,Y)}(x,y)}
+\renewcommand{\ss}{\mathcal{S}_X\times\mathcal{S}_Y}
+\newcommand{\xy}{(X,Y)}
+
+
+\usetikzlibrary{arrows.meta, positioning}
+
+
+\setlength{\parindent}{0pt}
+
+\title{\Huge{Probabilità}\\Appunti}
+\author{\huge{Giovanni "Qua' Qua' dancer" Palma}\\\huge{e}\\\huge{Alex "Morbidelli WhatsApp" Basta}}
+\date{}
+\pagenumbering{gobble}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+
+\pagebreak
+
+\include{paginette/spazi-di-probabilita-discreti}
+\include{paginette/probabilita-condizionata}
+\include{paginette/combinatoria}
+\include{paginette/variabili-aleatorie}
+\include{paginette/vettori-aleatori}
+\include{paginette/catene-markov}
+\include{paginette/esercitazione}
+
+\end{document}

@@ -1,0 +1,652 @@
+% \begin{document}
+\chapter{Esercitazione}
+\section{Probabilita' Condizionata}
+\subsection{Esercizio 4 (Foglio 2)}
+\subsubsection{Testo}
+Un’urna contiene \(r\) palline rosse e \(b\) palline bianche. Si eseguono due estrazioni senza reimmissione.
+\begin{enumerate}[label=(\alph*)]
+    \item Determinare uno spazio di probabilità che descriva l’esperimento aleatorio.
+    \item Calcolare la probabilità che la prima pallina estratta sia rossa.
+    \item Calcolare la probabilità che la prima pallina sia rossa e la seconda bianca.
+    \item Calcolare la probabilità che le due palline abbiano colori diversi.
+    \item Calcolare la probabilità che la seconda pallina estratta sia rossa.
+\end{enumerate}
+
+\subsubsection{Soluzione}
+Siano:
+
+$R_i$ = "ho estratto una pallina rossa all'i-esima iterazione"
+$B_i$ = "ho estratto una pallina rossa all'i-esima iterazione"
+
+Definiamo lo spazio degli esiti. Poiché le estrazioni avvengono senza reimmissione, ogni esito è una coppia ordinata di palline diverse. Denotiamo:
+\[
+    \Omega = \{ (p_1, p_2) : p_1, p_2 \text{ sono palline dell'urna e } p_1 \neq p_2 \}
+\]
+La cardinalità totale è:
+\[
+    |\Omega| = (r+b)(r+b-1)
+\]
+Infatti appena estraiamo una pallina l'urna conterrà $(r+b-1)$ palline, la totalità di palline -1
+
+Sfruttiamo il principio di probabilità uniforme, secondo cui ogni esito ha probabilità \(1/|\Omega|\)
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Spazio di probabilità:}\\
+    Lo spazio di probabilità è \((\Omega, P)\) con
+    \[
+        P(\{ \omega \}) = \frac{1}{(r+b)(r+b-1)} \quad \forall \omega \in \Omega.
+    \]
+    
+    \item \textbf{Probabilità che la prima pallina sia rossa:}\\[1mm]
+    Poiché ci sono \(r\) palline rosse su un totale di \(r+b\), si ha:
+    \[
+        P(R_1) = \frac{r}{r+b}.
+    \]
+    
+    \item \textbf{Probabilità che la prima pallina sia rossa e la seconda bianca:}\\[1mm]
+    Dato che la prima è rossa, nell’urna rimangono \(r+b-1\) palline, di cui \(b\) sono bianche:
+    \[
+        P(R_1 \cap B_2) = P(B_2 | R_1) P(R_1) =\frac{r}{r+b} \cdot \frac{b}{r+b-1}.
+    \]
+    
+    \item \textbf{Probabilità che le due palline abbiano colori diversi:}\\[1mm]
+    Questa condizione si verifica in due modi: rossa poi bianca oppure bianca poi rossa. Quindi:
+    \[
+        \begin{split}
+            P((R_1 \cap B_2)\cup (B_1 \cap R_2)) & =P(B_2 | R_1) P(R_1) + P(R_2 | B_1) P(B_1)\\
+                    &= \frac{r}{r+b} \cdot \frac{b}{r+b-1} + \frac{b}{r+b} \cdot \frac{r}{r+b-1} \\
+                    &= \frac{2rb}{(r+b)(r+b-1)}.
+        \end{split}
+    \]
+    \item \textbf{Probabilità che la seconda pallina sia rossa:}\\[1mm]
+    Usiamo la formula della probabilità totale, considerando le possibili estrazioni del primo turno:
+    \[
+    \begin{split}
+    P(R_2) &= P(B_2 \mid R_1) \cdot P(R_1)  + P(B_2 \mid B_1) \cdot P(B_1)\\[1mm]
+    &= \frac{r-1}{r+b-1} \cdot \frac{r}{r+b} + \frac{r}{r+b-1} \cdot \frac{b}{r+b}
+    \end{split}
+    \]
+    Semplificando:
+    \[
+    P(R_2) = \frac{r(r-1) + rb}{(r+b)(r+b-1)} = \frac{r^2 - r + rb}{(r+b)(r+b-1)} = \frac{r(r+b-1)}{(r+b)(r+b-1)} = \frac{r}{r+b}
+    \]
+\end{enumerate}
+
+\subsubsection{Esercizio 6}
+\subsubsection{Testo}
+Supponiamo che un’urna contenga 1 pallina rossa e 1 pallina bianca. Una pallina viene estratta e se ne osserva il colore. La pallina estratta viene poi rimessa nell’urna insieme a un’altra pallina dello stesso colore (estrazione con rinforzo). Siano
+\[
+\begin{aligned}
+    R_i &= \text{evento che all'}i\text{-esima estrazione venga estratta una pallina rossa,}\\
+    B_i &= \text{evento che all'}i\text{-esima estrazione venga estratta una pallina bianca.}
+\end{aligned}
+\]
+Si calcolino:
+\begin{enumerate}[label=(\arabic*)]
+    \item \(P(R_2)\)
+    \item Sapendo che la seconda pallina estratta è rossa, quale è l’evento più probabile per la prima estrazione: che la pallina estratta sia stata rossa oppure bianca?
+\end{enumerate}
+
+\subsubsection{Soluzione}
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Calcolo di \(P(R_2)\):}\\[1mm]
+    \textbf{Caso 1:} Se alla prima estrazione esce una pallina rossa (evento \(R_1\)):
+    \begin{itemize}
+        \item La probabilità di estrarre una rossa al primo turno è \(P(R_1)=\frac{1}{2}\).
+        \item Dopo l’estrazione, la pallina rossa viene rimessa insieme a un’altra rossa, dunque l’urna contiene 2 rosse e 1 bianca. Quindi:
+        \[
+        P(R_2 \mid R_1)=\frac{2}{3}.
+        \]
+    \end{itemize}
+    \textbf{Caso 2:} Se alla prima estrazione esce una pallina bianca (evento \(B_1\)):
+    \begin{itemize}
+        \item \(P(B_1)=\frac{1}{2}\).
+        \item Dopo il rinforzo, l’urna contiene 1 rossa e 2 bianche, dunque:
+        \[
+        P(R_2 \mid B_1)=\frac{1}{3}.
+        \]
+    \end{itemize}
+    Applicando la formula della probabilità totale:
+    \[
+    \begin{split}
+    P(R_2) &= P(R_2 \mid R_1) \cdot P(R_1) + P(R_2 \mid B_1) \cdot P(B_1) \\
+    &= \frac{2}{3}\cdot\frac{1}{2} + \frac{1}{3}\cdot\frac{1}{2} \\
+    &= \frac{1}{3} + \frac{1}{6} = \frac{1}{2}.
+    \end{split}
+    \]
+    
+    \item \textbf{Confronto tra \(P(R_1 \mid R_2)\) e \(P(B_1 \mid R_2)\):}\\[1mm]
+    
+    Innanzi tutto si tenga conto il teorema di Bayes:\\ 
+    Siano $A,B$ due eventi, t.c. $P(A), P(B)>0$, allora $P(A\mid B) = \frac{P(B\mid A) P(A)}{P(B)}$
+
+    Dimostrazione: 
+    Abbiamo $P(A\cap B) = P(B\cap A)$, quindi $P(A\mid B) = \frac{P(A\cap B)}{P(B)} = \frac{P(B\mid A)P(A)}{P(B)}$
+
+
+    Usiamo il teorema di Bayes per calcolare \(P(R_1 \mid R_2)\):
+    \[
+    P(R_1 \mid R_2) = \frac{P(R_2 \mid R_1) \, P(R_1)}{P(R_2)} 
+    = \frac{\frac{2}{3} \cdot \frac{1}{2}}{\frac{1}{2}}
+    = \frac{2}{3}.
+    \]
+    Poiché \(P(B_1 \mid R_2) =1- P(B_1^c \mid R_2) =1 - P(R_1 \mid R_2) = 1 - \frac{2}{3} = \frac{1}{3}\), risulta che,
+    \[
+    P(R_1 \mid R_2) > P(B_1 \mid R_2).
+    \]
+    Quindi, sapendo che la seconda pallina è rossa, è più probabile che la prima pallina estratta fosse rossa.
+\end{enumerate}
+
+
+\subsection{Esercizio 7}
+\subsubsection{Testo}
+Si consideri una popolazione in cui una persona su 100 abbia una certa malattia. Un test è disponibile per diagnosticare tale malattia. Si supponga che il test non sia perfetto, in quanto esso risulta positivo (ovvero indica la presenza della malattia) nel 5\% dei casi quando è effettuato su persone sane, mentre risulta negativo (indicando l’assenza della malattia) nel 2\% dei casi quando è effettuato su persone malate. Si calcolino le probabilità che:
+\begin{enumerate}[label=(\alph*)]
+    \item il test risulti positivo quando effettuato su una persona malata,
+    \item il test risulti positivo,
+    \item una persona sia malata se il test risulta positivo.
+\end{enumerate}
+
+\subsubsection{Soluzione}
+I dati del problema sono: 
+\begin{itemize}
+    \item \(P(M)=0.01\): probabilità che una persona sia malata.
+    \item \(P(S)=0.99\): probabilità che una persona sia sana.
+    \item \(P(T^+ \mid M)=0.98\): probabilità che il test risulti positivo se la persona è malata.
+    \item \(P(T^- \mid M)=0.02\): probabilità che il test risulti negativo se la persona è malata.
+    \item \(P(T^+ \mid S)=0.05\): probabilità che il test risulti positivo se la persona è sana.
+    \item \(P(T^- \mid S)=0.95\): probabilità che il test risulti negativo se la persona è sana.
+\end{itemize}
+
+
+Costruiamo un diagramma di verità:
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        & Malato & Sano \\
+        \hline
+        Positivo & 0.98 & 0.05 \\
+        \hline
+        Negativo & 0.02 & 0.95 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+
+\begin{enumerate}
+    \item \textbf{Probabilità che il test risulti positivo su una persona malata}: Questa probabilità è data direttamente dai dati:
+    \[
+        P(T^+ \mid M)=0.98.
+    \]
+    
+    \item \textbf{Probabilità che il test risulti positivo}:Utilizziamo la formula della probabilità totale:
+    \[
+    \begin{split}
+    P(T^+) &= P(T^+ \mid M) \, P(M) + P(T^+ \mid S) \, P(S) \\
+    &= 0.98 \cdot 0.01 + 0.05 \cdot 0.99 \\
+    &= 0.0098 + 0.0495 \\
+    &\approx 0.0593.
+    \end{split}
+    \]
+    
+    \item \textbf{Probabilità che una persona sia malata, dato un test positivo:}\\[1mm]
+    Applichiamo il teorema di Bayes:
+    \[
+    \begin{split}
+    P(M \mid T^+) &= \frac{P(T^+ \mid M) \, P(M)}{P(T^+)} \\
+    &= \frac{0.98 \cdot 0.01}{0.0593} \\
+    &\approx \frac{0.0098}{0.0593} \\
+    &\approx 0.165.
+    \end{split}
+    \]
+    Quindi, circa il 16,5\% delle persone con test positivo sono effettivamente malate.    
+\end{enumerate}
+
+\subsection{Esercizio 5}
+\subsubsection{Testo}
+Si consideri il seguente esperimento:
+
+    ci sono quattro dadi: due non truccati e due truccati. I dadi truccati hanno tre facce con il numero \(6\) e tre facce con il numero \(5\). Si lancia una moneta (non truccata). Se viene \emph{testa} si lanciano i due dadi non truccati, mentre se viene \emph{croce} si lanciano i due dadi truccati.
+
+Si richiede di calcolare:
+\begin{enumerate}[label=(\alph*)]
+    \item La probabilità che la somma dei due dadi sia \(11\).
+    \item Sapendo di aver ottenuto \(11\) dalla somma dei due dadi, calcolare la probabilità che il lancio della moneta sia stato \emph{croce}.
+\end{enumerate}
+
+\subsubsection{Soluzione}
+\begin{tikzpicture}
+  [
+    grow                    = right,
+    sibling distance        = 8em,
+    level distance          = 8em,
+    edge from parent/.style = {draw, -latex},
+    every node/.style       = {font=\footnotesize},
+    sloped
+  ]
+  
+  \node {$\Omega$}
+    child { node {Testa ($\frac{1}{2}$)}
+      child { node {Dado 1}
+        child { node {1,2,3,4,5,6 ($\frac{1}{6}$)}} 
+      }
+      child { node {Dado 2}
+        child { node {1,2,3,4,5,6 ($\frac{1}{6}$)}} 
+      }
+    }
+    child { node {Croce ($\frac{1}{2}$)}
+      child { node {Dado 1}
+        child { node {5 ($\frac{1}{2}$)}}
+        child { node {6 ($\frac{1}{2}$)}}
+      }
+      child { node {Dado 2}
+        child { node {5 ($\frac{1}{2}$)}}
+        child { node {6 ($\frac{1}{2}$)}}
+      }
+    };
+\end{tikzpicture}
+
+Sia:
+\[
+T = \{\text{moneta: testa}\}, \quad C = \{\text{moneta: croce}\},
+\]
+con \(P(T)=P(C)=\frac{1}{2}\).
+
+\textbf{Caso 1: Dadi non truccati (se esce testa)}\\[1mm]
+I dadi non truccati hanno facce \(1,2,3,4,5,6\) con probabilità uniforme. La somma \(11\) si ottiene con le coppie \((5,6)\) e \((6,5)\). Quindi:
+\[
+P(11 \mid T) = \frac{2}{36} = \frac{1}{18}.
+\]
+
+\textbf{Caso 2: Dadi truccati (se esce croce)}\\[1mm]
+I dadi truccati assumono solo i valori \(5\) e \(6\) con probabilità \( \frac{3}{6} = \frac{1}{2}\) ciascuno. La somma \(11\) si ottiene con le coppie \((5,6)\) e \((6,5)\), dunque:
+\[
+P(11 \mid C) = 2 \cdot \left(\frac{1}{2} \cdot \frac{1}{2}\right) = \frac{1}{2}.
+\]
+
+\textbf{Calcolo della probabilità totale di ottenere \(11\):}
+\[
+\begin{split}
+P(11) &= P(11 \mid T) \, P(T) + P(11 \mid C) \, P(C) \\
+&= \frac{1}{18} \cdot \frac{1}{2} + \frac{1}{2} \cdot \frac{1}{2} \\
+&= \frac{1}{36} + \frac{1}{4} = \frac{1}{36} + \frac{9}{36} = \frac{10}{36} = \frac{5}{18}.
+\end{split}
+\]
+
+\textbf{Calcolo della probabilità condizionata \(P(C \mid 11)\):}
+Utilizzando il teorema di Bayes:
+\[
+P(C \mid 11) = \frac{P(11 \mid C) \, P(C)}{P(11)} 
+= \frac{\frac{1}{2} \cdot \frac{1}{2}}{\frac{5}{18}} 
+= \frac{\frac{1}{4}}{\frac{5}{18}} 
+= \frac{1}{4} \cdot \frac{18}{5} 
+= \frac{9}{10}.
+\]
+Quindi, se la somma è \(11\), la probabilità che la moneta abbia dato \emph{croce} è \(\frac{9}{10}\).
+
+\subsection{Esercizio 2}
+\subsubsection{Testo}
+
+Si consideri l’esperimento di lanciare due volte un dado.
+\begin{enumerate}[label=(\alph*)]
+\item Determinare uno spazio di probabilit‘a che descriva l’esperimento aleatorio.
+  \item Si considerino i seguenti eventi:
+\begin{itemize}
+\item A = “numero dispari sul primo dado”
+\item B =“numero dispari sul secondo dado”
+\item C = “la somma dei due risultati ‘e dispari”
+\end{itemize}
+Gli eventi A, B e C sono indipendenti?
+\item Si considerino ora gli eventi:
+  \begin{itemize}
+  \item E = “il risultato del secondo lancio ‘e 1, 2 o 5”
+    \item F = “il risultato del secondo lancio ‘e 4, 5 o 6”
+    \item G = “la somma dei due risultati ‘e 9”
+  \end{itemize}
+  Gli eventi E, F e G sono indipendenti?
+\end{enumerate}
+
+\subsubsection{Soluzione}
+
+\begin{enumerate}[label=(\alph*)]
+  \item $ (\Omega, \mathbb{P}) = ? $:
+    \begin{itemize}
+    \item $ \Omega = \{1,...,6\} \times \{1,...,6\} $
+    \item I due sottoesperimenti sono indipendenti e hanno probabilita' uniforme, quindi:
+      \begin{align*}
+        \mathbb{P}((x_1, x_2)) &= \mathbb{P}(x_1)\mathbb{P}(x_2)\\
+        &= \frac{1}{6}\frac{1}{6}\\
+        &= \frac{1}{36}\\
+        &= \frac{1}{|\Omega|}
+      \end{align*}
+        Quindi anche l'esperimento principale ha probabilita' uniforme.
+    \end{itemize}
+  \item Dimostriamo per controprova che $ A,B $ e $ C $ non sono indipendenti:
+    \begin{align*}
+      \mathbb{P}(A \cap B \cap C) &= \mathbb{P}(A)\mathbb{P}(B|A)\mathbb{P}(C|A \cap B)\\
+      &= \frac{1}{2}\frac{1}{2}0\\
+      &= 0 \neq \mathbb{P}(A)\mathbb{P}(B)\mathbb{P}(C) (\text{dato che e' sicuramente }> 0)
+    \end{align*}
+  \item Dimostriamo per controprova che $ D,E $ e $ F $ non sono indipendenti;
+    \begin{align*}
+      \mathbb{P}(E|F) &= \frac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)}\\
+      &= \frac{1}{3} \neq \mathbb{P}(E) (=\frac{1}{2})
+    \end{align*}
+\end{enumerate}
+
+\subsection{Esercizio 3}
+\subsubsection{Testo}
+
+I componenti prodotti da una ditta possono avere due tipi di difetti con percentuali del 3\% e del 7\% rispettivamente
+e in modo indipendente l’uno dall’altro. Qual ‘e la probabilit‘a che un componente scelto a caso
+\begin{enumerate}[label=(\alph*)]
+\item presenti entrambi i difetti?
+\item sia difettoso?
+\item presenti il primo difetto, sapendo che ‘e difettoso?
+\item presenti uno solo dei difetti, sapendo che ‘e difettoso?
+\end{enumerate}
+
+\subsubsection{Soluzione}
+
+$ D_1 = \text{"prodotto presenta il difetto 1"} $
+
+$ D_2 = \text{"prodotto presenta il difetto 2"} $
+\begin{enumerate}[label=(\alph*)]
+  \item $ \mathbb{P}(D_1 \cap D_2) = ? $ dato che non ci viene detto niente, possiamo ipotizzare che gli eventi sono indipendenti, quindi:
+    \begin{align*}
+      \mathbb{P}(D_1 \cap D_2) &= \mathbb{P}(D_1)\mathbb{P}(D_2)\\
+      &= \mathbb{P}(D_1)\mathbb{P}(D_2)\\
+      &= 0.03 \cdot 0.07
+    \end{align*}
+  \item $ \mathbb{P}(D_1 \cup D_2) = ? $ proviamo a usare DeMorgan, tenendo in mente che i complementari di eventi indipendenti sono anch'essi indipendenti:
+    \begin{align*}
+      \mathbb{P}(D_1 \cup D_2) &= 1 - \mathbb{P}(D_1^{c} \cap D_2^{c})\\
+      &= 1 - \mathbb{P}(D_1^{c})\mathbb{P}(D_2^{c})\\
+      &= 1 - 0.97\cdot 0.93
+    \end{align*}
+  \item $ \mathbb{P}(D_1 | D_1 \cup D_2) = ? $ possiamo usare Bayes e il risultato trovato nel punto prima:
+    \begin{align*}
+      \mathbb{P}(D_1 | D_1 \cup D_2) &= \frac{\mathbb{P}(D_1 \cup D_2 | D_1)\mathbb{P}(D_1)}{\mathbb{P}(D_1 \cup D_2)}\\
+      &= \frac{1\cdot 0.03}{1 - 0.97\cdot 0.93}
+    \end{align*}
+  \item $ \mathbb{P}((D_1 \cap D_2^{c})\cup(D_1^{c} \cap D_2) | D_1 \cup D_2) = ? $
+    \begin{align*}
+      \mathbb{P}((D_1 \cap D_2^{c}) \cup (D_1^{c} \cap D_2) | D_1 \cup D_2) &= \frac{\mathbb{P}(D_1 \cup D_2 | (D_1 \cap D_2^{c})\cup (D_1^{c} \cap D_2))\mathbb{P}((D_1 \cap D_2^{c})\cup(D_1^{c} \cap D_2))}{\mathbb{P}(D_1 \cup D_2)}\\
+      &= \frac{1 \cdot \mathbb{P}((D_1 \cap D_2^{c})\cup(D_1^{c} \cap D_2))}{\mathbb{P}(D_1 \cup D_2)}
+    \end{align*}
+    Ci rimane quindi da calcolare la probabilita al numeratore. Notare che:
+    \begin{align*}
+      (D_1 \cap D_2^{c}) \cap (D_1^{c} \cap D_2) &= D_1 \cap D_2^{c} \cap D_1^{c} \cap D_2\\
+      &= D_1 \cap D_1^{c} \cap D_2 \cap D_2^{c}\\
+      &= \emptyset
+    \end{align*}
+    Quindi, essendo eventi disgiunti possiamo applicare l'addittivita' finita:
+    \begin{align*}
+      \mathbb{P}((D_1 \cap D_2^{c}) \cup (D_1^{c} \cap D_2)) &= \mathbb{P}(D_1 \cap D_2^{c})+\mathbb{P}(D_1^{c} \cap D_2)\\
+      &= \mathbb{P}(D_1)\mathbb{P}(D_2^{c}) + \mathbb{P}(D_1^{c})\mathbb{P}(D_2)
+    \end{align*}
+\end{enumerate}
+
+\subsection{Esercizio Porco Rosso}
+\subsubsection{Testo}
+
+L’aereo dei pirati del cielo, appena riparato, è stato dato alle fiamme. Porco Rosso vuole scoprire chi è stato. Durante le indagini si è scoperto che la settimana prima del delitto i pirati del cielo hanno detto al meccanico della ditta Piccolo che non gli avrebbero pagato la riparazione dell’idrovolante. Interrogato da Porco Rosso, Piccolo cerca di scagionarsi dicendo che a seguito di insolvenza solo 1 meccanico su 1000 si vendica. Porco Rosso però si accorge che questa stima non è più significativa: bisogna valutare la probabilità di vendetta sapendo che l’aereo è stato effettivamente dato alle fiamme. Porco Rosso allora considera questi eventi:
+
+\begin{itemize}
+    \item \(A\): dei clienti risultano insolventi contro il proprio meccanico,
+    \item \(B\): l’aereo di un cliente viene distrutto dal meccanico,
+    \item \(C\): l’aereo di un cliente viene distrutto ma non dal proprio meccanico.
+\end{itemize}
+
+A questo punto è necessario il vostro aiuto!
+
+\begin{enumerate}[label=(\alph*)]
+    \item Esprimere in funzione di \(A\), \(B\) e \(C\) la probabilità fornita da Piccolo e calcolarla.
+    \item Quali eventi tra \(A\), \(B\) e \(C\) possono essere ritenuti disgiunti?
+    \item Quali eventi tra \(A\), \(B\) e \(C\) possono essere ritenuti indipendenti?
+    \item Esprimere in funzione di \(A\), \(B\) e \(C\) l’evento \(D\): l’aereo di un cliente viene distrutto.
+    \item Esprimere la probabilità condizionata \(P(B|A \cap D)\) in funzione solo di \(P(B|A)\) e \(P(C)\).
+    Porco Rosso non riesce a trovare \(P(C)\), tuttavia trova che 1 aereo ogni 10000 viene distrutto.
+    \item Limitare (dal basso o dall’alto) il valore di \(P(B|A \cap D)\).
+    \item È il caso che Porco Rosso continui ad indagare su Piccolo?
+\end{enumerate}
+
+\subsubsection{Soluzione}
+\begin{itemize}
+    \item $P(B|A) = \frac{1}{1000} = \frac{P(A\cap B)}{P(A)}$, 
+    \item $B\cap C = \emptyset$
+    \item Quali tra A,B,C   sono indipendenti? $P(A\cap B) = P(A)\cdot P(B)$, $P(A\cap C) = P(A)\cdot P(C)$
+    \item D = "Areo distrutto" = $B\cup C$
+    \item $P(B | A\cap D)$ sono in funzione di $P(B|A)$ e $P(C)$, quindi $= \frac{B\cap A \cap D}{P(A\cap D)} = \frac{B\cap A\cap (B \sqcup C)}{ P(A\cap (B\sqcup C))} = \frac{((B\cap A))}{P(A \cap (B \cup C))} $
+\end{itemize}
+
+\subsection{Esercizio 2.3}
+\subsubsection{Testo}
+Nel gioco del lotto si estraggono senza reimmissione cinque numeri da un'unrna che contiene 90 palline da 1 a 9
+\begin{enumerate}
+    \item Determinare una spazio di probabilità che descriva l'esperimento aleatorio
+    \item Come cambia la risposta al punto precedente se le estrazioni avvengono con reimmissione?
+\end{enumerate}
+
+\subsubsection{Svolgimento}
+\begin{enumerate}
+    \item \begin{itemize}
+        \item  $\Omega = \{(x_1, x_2, x_3, x_4,_5)\mid x_i\in \{1,\dots, 90\}, i=1,\dots,5, x_i \text{ distinti}\}$
+        \item .
+        Definisco:
+
+        $\forall i\in\{1,\dots, 5\} \forall j\in \{1,\dots, 90\},\, E_{ij}:$ "straggo il numero $j$ all'i-esima estrazione" 
+
+        $\mathbb{P}(E_{1,x_1}\cap E_{2,x_3}\cap E_{3,x_3}\cap E_{4,x_4}\cap E_{5,x_5})= \mathbb{P} (E_{1,x_1}) \mathbb{P}(E_{2,x_2}|E_{1,x_1}) \dots \mathbb{P}(E_{5,x_5} | E_{1,x_1}\cap E_{2,x_2}\cap E_{3,x_3} \cap E_{4,x_4} \cap E_{5,x_5})$ assumo che vi è probabilità uniforme $= \frac{1}{90}\cdot\frac{1}{89}\cdot \frac{1}{88}\cdot\frac{1}{87}\cdot\frac{1}{86} = \frac{1}{|\Omega|}$
+    \end{itemize}
+    
+   
+
+    \item $\Omega = \{(x_1, x_2, x_3, x_4,_5)\mid x_i\in \{1,\dots, 90\}, i=1,\dots,5\}$
+    
+    sotto-esperimento: estrazione dall'urna, dato che avviene la reimmissione si ha che ogni sotto-esperimento è indipendente, quindi si ha:
+    \[
+        \mathbb{P}(\cdot) \text{ uniforme per }\Omega: \mathbb{P}(\omega)
+    \]
+\end{enumerate}
+
+\subsection{}
+\subsubsection{Testo}
+Un'urna contiene 10 palline di cui 6 bianche e 4 rosse. Si estraggono due palline senza reimmissione. Calcolare la probabilità dell'evento
+
+\[
+    B_2 =\text{ la seconda è bianca }
+\]
+
+\subsubsection{Svolgimento}
+Sia $B_i = $"estraggo una pallina bianfa all'i-esima estrazione"
+
+$\mathbb{P}(B_2)$?
+
+TODO: giaga alberello
+
+Formula delle porb totali:
+\[
+    \mathbb{P}(B_2) = P(B_2 \cap B_1) + P(B_2\cap B_1^c )= P(B_2| B_1)P (B_1)  P(B_2| B_1^c)P (B_1^c) +  = \frac{5}{9}\cdot \frac{6}{10}+\frac{6}{9}\cdot\frac{4}{10}
+\]
+\section{Esercitazione combinatoria}
+\subsection{Esercizio 3}
+
+\subsubsection{Testo}
+Tre amici si danno appuntamento nel bar della piazza centrale della città senza sapere che ci sono quattro bar. Qual è la probabilità che scelgano lo stesso bar? Tre bar differenti?
+
+\subsubsection{Svolgimento}
+Ognuno di loro è come se estraesse un bar da un'urna. Quindi i casi totali sono, ovviamente, $4^3$. Il primo brodo che sceglie il bar è fortunello, infatti può scegliere qualunque bar, quindi i casi favorevoli saranno 4, mentre gli altri potranno scegliere solo e soltanto il bar che ha scelto il brodez iniziale. Quindi
+
+\[
+  \frac{4\cdot 1\cdot 1}{4^3} = \frac{1}{16}
+\]
+
+Nel caso dei bar differenti? Il primo può prendere un bar a caso, l'altro potrà scegliere solo sugli altri tre bar ed infine l'ultimo solo 2, matematicamente:
+\[
+  \frac{4\cdot 3\cdot 2}{4^3}
+\]
+
+\subsection{Esercizio 4}
+
+\subsubsection{Testo}
+Si calcoli la probabilit`a di ottenere 2 palline rosse estraendone 4 da un’urna che contiene 3 palline rosse e 7 bianche. Si confrontino i casi di estrazioni con reimmissione, senza reimmissione e simultane.
+
+\subsubsection{Svolgimento}
+\begin{itemize}
+\item Estrazione con reimissione:
+  \[
+    \frac{\binom{2}{4} \cdot 3 \cdot 3 \cdot 7 \cdot 7}{10^3}
+  \]
+    Quando estraggo la prima pallina, ho 10 possibilita', ed e' cosi' per tutte le estrazioni. Dobbiamo considerare anche l'ordine (dato che siamo nel caso con reimissione), quindi devo vedere in quanti modi posso scegliere le "posizioni" rosse in 4 estrazioni (es. rrbb, rbrb, ...). Una volta scelte le posizioni (usando il binomiale $ \binom{4}{2} $), possiamo ora semplicemente moltiplicarlo per il numero di casi favorevoli per un ordine (es. $ rrbb = 3 \cdot 3 \cdot 7 \cdot 7 $)
+\item Estrazione senza reimmissione:
+  \[
+    \frac{\binom{2}{4} \cdot 3 \cdot 2 \cdot 7 \cdot 6}{10 \cdot 9 \cdot 8}
+  \]
+  Stessa roba di prima, ma la probabilita' considerando un solo ordine cambia (es. $ rrbb = 3\cdot 2 \cdot 7 \cdot 6 $) e cambiano anche i casi possibili
+\item Estrazione simultanea:
+
+  Non c'e' piu' l'ordine, quindi usiamo i binomi per rappresentare sta cosa
+    \[
+      \frac{\binom{3}{2} \cdot \binom{7}{2}}{\binom{10}{4}}
+    \]
+\end{itemize}
+
+\subsection{Esercizio 6}
+
+\subsubsection{Testo}
+Giocate 6 numeri al Superenalotto. Verranno estratti 6 numeri senza ripetizione dai primi 90 naturali, seguiti dall'estrazione di un 7 numero jolly, diverso quindi dai precedenti. Qual è la probabilità di fare 5+1 (indovinare 5 dei primi 6 numeri estratti e in più il numero jolly)?
+
+\subsubsection{Svolgimento}
+
+Intanto vengono estratti i primi 6 numeri senza emmissione e si ha, ovviamente, come casi possibili:
+\[
+  90\cdot 89 \cdot 88 \cdot 87 \cdot 86 \cdot 85 \cdot 84
+\]
+
+Dato che devo indovianre solo 5 nuemri, debbo sbagliare un numero, pertanto, per indicare che ho 6 modi per sbagliare il numerino (infatti che numero sbaglio tra i miei 6? il primo? secondo? terzo? devo tenere conto di tutte le possibilità) utilizzo il coefficiente binomiale $\binom{6}{1}$ moltiplicato per $84$ (ovvero la probabilità di "sbagliare" tra i novanta numeri), infine moltiplico per 1 (una possibilità su tutti casi possibili) tante volte quanto devo indovinare i numeri. Pertanto si ha:  
+
+\[
+  \frac{\binom{6}{1}\cdot 84 \cdot 1 \cdot 1 \cdot \dots}{90\cdot 89 \cdot 88 \cdot 87 \cdot 86 \cdot 85 \cdot 84} = \frac{6}{90\cdot 89 \cdot 88 \cdot 87 \cdot 86 \cdot 85 }
+\]
+
+\subsubsection{Esercizio 7}
+\subsubsection{Testo}
+Supponiamo di giocare a poker con un mazzo da 52 carte, identificate dal seme (cuori, quadri, fiori, picche) e dal tipo (un numero da 2 a 10 oppure J, Q, K, A). Si calcolino: 
+\begin{enumerate}[label=(\alph*)]
+\item la probabilit`a di avere una scala reale massima, ovvero le 5 carte 10, J, Q, K, A dello stesso seme;
+\item la probabilit`a di avere una scala reale, ovvero una qualsiasi scala di 5 carte dello stesso seme (ricordiamo che con l’asso possiamo fare la scala A, 2, 3, 4, 5 ma anche 10, J, Q, K, A);
+\item la probabilit`a di avere una scala, ovvero una qualsiasi scala di 5 carte non necessariamente dello stesso seme;
+\item la probabilit`a di avere colore, ovvero un sottoinsieme di 5 carte dello stesso seme;
+\item la probabilit`a di avere poker, ovvero un sottoinsieme di 5 carte in cui ci sono 4 carte dello stesso tipo;
+\item la probabilit`a di avere un tris, ovvero un sottoinsieme di 5 carte in cui ci sono 3 carte dello stesso tipo e le altre due di tipo diverso tra loro e dalle prime tre;
+\item la probabilit`a di avere una coppia, ovvero un sottoinsieme di 5 carte in cui ci sono 2 carte dello stesso tipo e le altre tre di tipo diverso tra loro e dalle prime due.
+\end{enumerate}
+
+\subsubsection{Svolgimento}
+
+\begin{enumerate}[label=(\alph*)]
+  \item L'ordine non importa $ \implies $ estrazione simultanea. Ci sono $ \binom{52}{5} $ modi per estrarre una mano (casi possibili), i casi favorevoli sono 4 per il seme, poi le carte in mano sono fissate (abbiamo una sola possibilita' una volta scelto il seme)
+    \[
+      \frac{4 \cdot 1}{\binom{52}{5}}
+    \]
+  \item I casi favorevoli sono ora 10 per ogni seme (10 pioli piu' bassi diversi da cui iniziare la scala), quindi i casi favorevoli sono di piu':
+    \[
+      \frac{4 \cdot 10}{\binom{52}{5}}
+    \]
+  \item Ora per ogni carta della scala abbiamo 4 possibilita' per il seme, quindi una volta scelto il piolo piu' basso moltiplico per $ 4^5 $:
+    \[
+      \frac{10 \cdot 4^5}{\binom{52}{5}}
+    \]
+  \item Una volta scelto il seme (4) ci sono $ \binom{13}{5} $ insiemi distinti di tipi di carte che possiamo avere:
+    \[
+      \frac{4 \cdot \binom{13}{5}}{\frac{52}{5}}
+    \]
+  \item In un mazzo e' impossibile avere 5 carte dello stesso tipo, il max e' proprio 4. Scegliamo quindi il tipo con cui vogliamo fare poker (13) e l'insieme dei semi (1 dato che sono tutti i semi per forza). Poi scegliamone una a caso fra tutte le carte rimaste (48):
+    \[
+      \frac{13 \cdot 1 \cdot 48}{\binom{}{}}
+    \]
+    E se volessimo trovare solo tre dello stesso tipo? Scegliamo sempre il tipo (13), poi per ogni tipo possiamo avere $ \binom{4}{3} $ insiemi per scegliere i semi. Poi fra le restanti carte non possiamo scegliere l'ultima carta con lo stesso tipo, quindi $ \binom{48}{2} $ (fra le 48 carte che possiamo prendere ne scelgo 2)
+    \[
+      \frac{13 \cdot \binom{4}{3} \cdot \binom{48}{2}}{\binom{52}{5}}
+    \]
+  \item Il ragionamento e' simile a prima, ma per le ultime 2 carte scegliamo prima il tipo (che deve essere diverso) poi abbiamo 4 semi per ogni tipo che va bene:
+    \[
+      \frac{13 \cdot \binom{4}{3} \cdot \binom{12}{2} \cdot 4^2}{\binom{52}{5}}
+    \]
+  \item Caso di prima ma per una coppia, stesso ragionamento:
+    \[
+      \frac{13 \cdot \binom{4}{2} \cdot \binom{12}{3} \cdot 4^3}{\binom{52}{5}}
+    \]
+\end{enumerate}
+
+\subsection{Esercizio 8}
+\subsubsection{Testo}
+Un mazzo di carte da scopone scientifico è costituito da 40 carte, identificate dal seme (spade, coppe, bastoni, denari) e dal tipo (asso, 2, 3, 4, 5, 6, 7, fante, cavallo, re). Supponendo di pescare 10 carte dal mazzo, calcolare la probabilità di estrarre:
+\begin{itemize}
+    \item[(a)] l'asso di bastoni,
+    \item[(b)] l'asso di spade e l'asso di coppe.
+\end{itemize}
+
+\subsubsection{Svolgimento}
+
+\begin{itemize}
+  \item[(a)]: Si ha che , dato che l'ordine di pescaggio non è importante, appartiene ad un genere di problemi dove l'estrazione è simultanea. Pertanto si ha che i casi possibili sono $\binom{40}{10}$. Dopodiche per avere un asso di bastoni ho una possibilità su tutti casi possibili, inoltre le altre carte possono essere qualsiasi, quindi ho nove modi per pescare le 39 carte rimanenti, ovvero $\binom{39}{9}$
+  \[
+    \frac{1\cdot\binom{39}{9} }{\binom{40}{10}}
+  \]
+  \item[(b)]: Ugualmente, qui occorre tenere presente il numero di possibilità che si ha per pescare 8 carte in un insieme di 38 carte, per la possbilità di beccare l'asso di spade e l'asso di coppe, ovviamente ne ho 1 su tutti i casi possibili, quindi: 
+  \[
+    \frac{1\cdot \binom{38}{8}}{\binom{40}{10}}
+  \]
+
+\end{itemize}
+
+\section{Probabilità condizionata e indipendenza}
+\subsection{Es. 1}
+\subsubsection{testo}
+Una roulette semplificata è formata da 12 numeri che sono “rosso” (R) e “nero” (N) in base allo schema seguente:
+\[
+\begin{array}{cccccccccccc}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+R & R & N & N & R & N & N & R & N & N & R & R
+\end{array}
+\]
+(a) Determinare uno spazio di probabilità che descriva l’esperimento aleatorio.
+
+Siano
+\begin{itemize}
+    \item \( A = \) “esce un numero pari”,
+    \item \( B = \) “esce un numero rosso”,
+    \item \( C = \) “esce un numero $\leq$ 3”,
+    \item \( D = \) “esce un numero $\leq$ 6”,
+    \item \( E = \) “esce un numero $\leq$ 8”,
+    \item \( F = \) “esce un numero dispari $\leq$ 3”.
+\end{itemize}
+
+Calcolare le seguenti probabilità condizionate:
+(b) \( P(A|C), P(C|A), P(B|C), P(A|F), P(D|F), P(A|B), P(B|A) \).
+
+Stabilire quindi se:
+(c) gli eventi \( A, B \) e \( D \) sono a 2 a 2 indipendenti;
+(d) \( A, B, D \) costituiscono una famiglia di eventi indipendenti;
+(e) \( A, B, E \) costituiscono una famiglia di eventi indipendenti;
+(f) \( A, C, E \) costituiscono una famiglia di eventi indipendenti;
+(g) \( F \) è indipendente da \( A \); \( F \) è indipendente da \( D \).
+
+\subsubsection{Svolgimento}
+\begin{itemize}
+  \item[(a)]: $\Omega =\{1,2,\dots, 12\}$
+  \item[(b)]: 
+  \begin{itemize}
+    \item $\mathbb{P}(A|C) = \frac{1}{3}=\frac{\mathbb{P}(A\cap C)}{\mathbb{P}(C)}=$ 
+    \item $P(C|A)= \frac{1}{6}$
+    \item $P(B|C) = \frac{2}{3}$
+    \item $P(A|F) = 0$
+    \item $P(D|F) = \frac{2}{2}=1=\frac{P(F\cap D)}{P(F)} = \frac{P(F)}{P(F)}$
+    \item $P(A|B) = \frac{3}{6}$
+    \item $\frac{3}{6}$
+  \end{itemize}
+  
+  \item[(c)]: $A,B,D$ sono indipendenti? Bisogna calcolare se $P(cap4$ 
+\end{itemize}

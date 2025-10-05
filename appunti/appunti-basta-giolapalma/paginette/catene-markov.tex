@@ -1,0 +1,48 @@
+% \begin{document}
+\chapter{Catene di Markov !WIP!}
+Lavoriamo ancora con successioni di VA - ovvero un processo stocastico (che puo' esere a tempo discreto o continuo, dato che l'interpretazione tipica e' che gli esperimenti vengono fatti in successione nel tempo) 
+
+$ (X_n)_{n \in \mathbb{N}} $ sono VA discrete:
+\begin{itemize}
+\item $ X_1 \to S_{X_1} $
+\item $ X_1 \to S_{X_1} $
+\item $ X_1 \to S_{X_1} $
+\item $ X_1 \to S_{X_1} $
+\end{itemize}
+
+Dove tutti i supporti sono finiti o infiniti numerabili tali per cui $ \exists S  $ supporto finito o infinito numerabile che:
+\[
+S_{X_1} \subseteq S, ..., S_{X_i} \subseteq S
+\]
+\dfn{}{
+  $ (X_n)_{n \in \mathbb{N}} $ di VA discrete e' detta \textit{catena di Markov} (a tempo discreto) se:
+  \begin{itemize}
+  \item $ \exists S  $ finito o inf. numerabile che contiene tutti i supporti
+  \item Vale la proprieta' di Markov:
+    \[
+    \forall i, j, i
+    \]
+  \end{itemize}
+
+  la i e' il valore presente mentre la j e' il valore futuro, in pratica il valore del prossimo stato e' condizionato solo dall'ultimo valore e non da quelli prima
+}
+
+in realta noi lavoreremo nel caso di $ S  $ finito, questa e' un'ipotesi innocua perche' e' facile passare alla versione infinita
+
+la seconda non e' innocua, ci dice che ci sara' solo una matrice di transizione e il tempo non gioca nessun ruolo, quindi sapendo il valore attuale sappiamo le probabilita' di trovarci nelgi altri stati possibili il prossimo tempo
+
+la somma delle righe della matrice deve fare 1 dato che sono tutte le possibilita'
+
+ci possiamo porre la domanda: ora mi trovo in un punto, qual'e' la probabilita' che fra x passi mi trovi in un altro specifico punto
+
+abbiamo visto poi un paio di esempi con grafi
+
+che cosa si aspetta di vedere negli esercizi d'esame: formule! non numeri a caso. Sulle catene di Markov possiamo lavorare sul grafo (anche per determinare le classi di comunicazione) ma bisogna che sul grafo ci sia un segno che fa vedere il ragionamento (e' cosi in generale per tutto il compito)
+
+classifichiamo gli stati in base al livello di accessibilita'. 
+
+Legge delle VA data la matrice delle probabilita' di transizione
+
+queste dipendono dal tempo e dalla distribuzione dello stato di partenza, anche se in realta' non deve essere per forza il primo stato, basta uno qualunque perche' tanto ci interessa solo dello stato finale. Quindi se viene dato il penultimo stato ci basta guardare un solo passaggio (e' meglio!)
+
+% \end{document}
